@@ -29,19 +29,13 @@ const Login = () => {
     console.log(email);
     console.log(mdp);
     console.log(response);
-    // if ('accessToken' in response) {
-    //   swal("Success", response.message, "success", {
-    //     buttons: false,
-    //     timer: 2000,
-    //   })
-    //   .then((value) => {
-    //     localStorage.setItem('accessToken', response['accessToken']);
-    //     localStorage.setItem('user', JSON.stringify(response['user']));
-    //     window.location.href = "/dashboard";
-    //   });
-    // } else {
-    //   swal("Failed", response.message, "error");
-    // }
+     if ('user' in response) {
+         localStorage.setItem('accessToken', response['accessToken']);
+         localStorage.setItem('user', JSON.stringify(response['user']));
+         window.location.href = "/dashboard";
+     } else {
+       console.log(response.message);
+     }
   }
   
     return (         
