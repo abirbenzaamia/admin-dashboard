@@ -63,36 +63,40 @@ function RequestsTable() {
                       {/* Table body */}
                       <tbody className="text-sm divide-y divide-slate-100">
                           {locataireataires.map(locataire => {
-                              return (
-                                  <tr key={locataire.id}>
-                                      <td className="p-2 whitespace-nowrap">
-                                          <div className="text-left">{locataire.id}</div>
-                                      </td>
-                                      <td className="p-2 whitespace-nowrap">
-                                          <div className="flex items-center">
-                                              <div className="w-10 h-10 shrink-0 mr-2 sm:mr-3">
-                                                  <img className="rounded-full" src={locataire.image} width="40" height="40" alt={locataire.name} />
-                                              </div>
-                                              
-                                          </div>
-                                      </td>
-                                      <td className="p-2 whitespace-nowrap">
-                                          <div className="text-left">{locataire.nom}</div>
-                                      </td>
-                                      <td className="p-2 whitespace-nowrap">
-                                          <div className="text-left">{locataire.prenom}</div>
-                                      </td>
-                                      <td className="p-2 whitespace-nowrap">
-                                          <div className="text-left">{locataire.email}</div>
-                                      </td>
-                                      <td className="p-2 whitespace-nowrap">
-                                          <div className="text-left font-medium text-green-500">{locataire.num_tel}</div>
-                                      </td>
-                                      <td className="p-2 whitespace-nowrap">
-                                          <div className="text-lg text-center">{}</div>
-                                      </td>
-                                  </tr>
-                              );
+                              if (locataire.type_utilisateur === "locataire") {
+                                return (
+                                  
+                                    <tr key={locataire.id}>
+                                        <td className="p-2 whitespace-nowrap">
+                                            <div className="text-left">{locataire.id}</div>
+                                        </td>
+                                        <td className="p-2 whitespace-nowrap">
+                                            <div className="flex items-center">
+                                                <div className="w-10 h-10 shrink-0 mr-2 sm:mr-3">
+                                                    <img className="rounded-full" src={locataire.image} width="40" height="40" alt={locataire.name} />
+                                                </div>
+                                                
+                                            </div>
+                                        </td>
+                                        <td className="p-2 whitespace-nowrap">
+                                            <div className="text-left">{locataire.nom}</div>
+                                        </td>
+                                        <td className="p-2 whitespace-nowrap">
+                                            <div className="text-left">{locataire.prenom}</div>
+                                        </td>
+                                        <td className="p-2 whitespace-nowrap">
+                                            <div className="text-left">{locataire.email}</div>
+                                        </td>
+                                        <td className="p-2 whitespace-nowrap">
+                                            <div className="text-left font-medium text-green-500">{locataire.num_tel}</div>
+                                        </td>
+                                        <td className="p-2 whitespace-nowrap">
+                                            <div className="text-lg text-center">{}</div>
+                                        </td>
+                                    </tr>
+                                ); 
+                              }
+                             
                           })}
                       </tbody>
                   </table>
