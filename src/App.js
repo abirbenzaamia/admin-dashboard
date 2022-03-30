@@ -4,7 +4,6 @@ import React, { useState } from 'react';
 import { BrowserRouter, Route, Routes , Navigate } from 'react-router-dom';
 import Dashboard from './pages/Dashboard/Dashboard';
 import Login from './pages/Login/Login';
-import Sidebar from './components/Sidebar/Sidebar';
 function App() {
   
   const [token, setToken] = useState();

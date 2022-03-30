@@ -2,7 +2,7 @@ import axios from 'axios';
 const URL_ROOT="https://wyerkn74ia.execute-api.eu-west-3.amazonaws.com";
 
 export const Services = {
-    //AUTH_URL: `http://54.37.87.85:7000/auth`,
+    AUTH_ATC_URL: URL_ROOT+'/login/atc',
     LOCATAIRE_URL: URL_ROOT+'/locataire/',
 }
 
