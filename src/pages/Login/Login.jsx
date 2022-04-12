@@ -26,6 +26,7 @@ async function loginATC(credentials) {
  return fetch('https://wyerkn74ia.execute-api.eu-west-3.amazonaws.com/login/atc', {
    method: 'POST',
    headers: {
+    'Access-Control-Allow-Origin': true,
      'Content-Type': 'application/json'
    },
    body: JSON.stringify(credentials)
