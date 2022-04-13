@@ -5,8 +5,8 @@ import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import Divider from '@mui/material/Divider';
 import PermIdentityIcon from '@mui/icons-material/PermIdentity';
-import {acceptLocataire } from '../../../modules/Users/users.crud';
-import {refuseLocataire} from '../../../modules/Users/users.crud';
+import {acceptLocataire } from '../../../modules/Users/locataires.crud';
+import {refuseLocataire} from '../../../modules/Users/locataires.crud';
 
 
 export default function PositionedMenu({id,argument}) {

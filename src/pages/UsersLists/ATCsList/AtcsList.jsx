@@ -1,8 +1,8 @@
 import Sidebar from '../../../components/Sidebar/Sidebar';
 import Header from '../../../components/Header/Header';
-import LocatairesList from '../../../components/Users/Locataires/LocatairesList'
+import ATCsList from '../../../components/Users/ATCs/ATCsList'
 import React, { useState } from 'react';
-import LocatairesListToolbar from '../../../components/Users/Locataires/LocatairesListToolbar';
+import ATCsListToolbar from '../../../components/Users/ATCs/ATCsListToolbar'
 import {
   Box,
 Container
@@ -28,9 +28,9 @@ const Dashboard = () => {
       }}
     >
       <Container maxWidth={false}>
-        <LocatairesListToolbar />
+        <ATCsListToolbar />
         <Box sx={{ mt: 3 }}>
-          <LocatairesList  />
+          <ATCsList />
         </Box>
       </Container>
     </Box>

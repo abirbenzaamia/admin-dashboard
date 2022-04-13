@@ -7,7 +7,7 @@ import TableBody from '@mui/material/TableBody'
 import TableCell from '@mui/material/TableCell'
 import TableContainer from '@mui/material/TableContainer'
 import { useState, useEffect }  from 'react';
-import { getLocataires} from '../../../modules/Users/users.crud'
+import { getLocataires} from '../../../modules/Users/locataires.crud'
 import RequestsActions from './RequestsActions'
 import Typography from '@mui/material/Typography'
 

@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { DataGrid } from '@mui/x-data-grid';
 import { useState, useEffect } from 'react';
-import {getLocataires} from '../../../modules/Users/users.crud'
+import {getLocataires} from '../../../modules/Users/locataires.crud'
 import Button from '@mui/material/Button';
 
 

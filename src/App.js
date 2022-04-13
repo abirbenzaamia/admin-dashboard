@@ -6,6 +6,7 @@ import Dashboard from './pages/Dashboard/Dashboard';
 import Login from './pages/Login/Login';
 import UserProfile from './pages/UserProfile/UserProfile'
 import Locataires from './pages/UsersLists/LocatairesList/LocatairesList'
+import ATCs from './pages/UsersLists/ATCsList/AtcsList'
 import { theme } from './theme';
 import { ThemeProvider } from '@mui/material/styles';
 
@@ -35,6 +36,10 @@ function App() {
         <Route exact path="/locataires" element={  <ThemeProvider theme={theme}>
 
 <Locataires/>
+  </ThemeProvider>}/>
+  <Route exact path="/ATCs" element={  <ThemeProvider theme={theme}>
+
+<ATCs/>
   </ThemeProvider>}/>
 
         <Route exact path="/user_profil" element={  <ThemeProvider theme={theme}>

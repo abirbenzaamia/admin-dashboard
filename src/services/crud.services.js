@@ -4,6 +4,8 @@ const URL_ROOT="https://wyerkn74ia.execute-api.eu-west-3.amazonaws.com";
 export const Services = {
     AUTH_ATC_URL: URL_ROOT+'/login/atc',
     LOCATAIRE_URL: URL_ROOT+'/locataire/',
+    ATC_URL: URL_ROOT+'/atc/',
+
 }
 
 export const CrudService = {
