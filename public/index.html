@@ -15,6 +15,16 @@
       user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
     -->
     <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+    <style type="text/css">@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=fallback");
+      
+      .sidebar-expanded .sidebar-expanded\:rotate-180{--tw-rotate:180deg;transform:translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}
+      @media (min-width: 1024px){
+      .sidebar-expanded .lg\:sidebar-expanded\:block{display:block}
+      .sidebar-expanded .lg\:sidebar-expanded\:hidden{display:none}
+      .sidebar-expanded .lg\:sidebar-expanded\:\!w-64{width:16rem !important}
+      .sidebar-expanded .lg\:sidebar-expanded\:opacity-100{opacity:1}}
+</style>
+
     <!--
       Notice the use of %PUBLIC_URL% in the tags above.
       It will be replaced with the URL of the `public` folder during the build.
@@ -26,8 +36,15 @@
     -->
     <title>ATC - tableau de bord</title>
   </head>
-  <body>
+  <body class="font-inter antialiased bg-slate-100 text-slate-600"></body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
+    <script>
+      if (localStorage.getItem('sidebar-expanded') == 'true') {
+          document.querySelector('body').classList.add('sidebar-expanded');
+      } else {
+          document.querySelector('body').classList.remove('sidebar-expanded');
+      }
+  </script>  
     <div id="root"></div>
     <!--
       This HTML file is a template.

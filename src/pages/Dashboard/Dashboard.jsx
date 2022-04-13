@@ -4,7 +4,7 @@ import WelcomeBanner from '../../components/Dashboard/WelcomeBanner';
 import RequestsTable from '../../components/Dashboard/Tables/RequestsTable'
 import React, { useState } from 'react';
 const Dashboard = () => {
-    const [sidebarOpen, setSidebarOpen] = useState(true);
+    const [sidebarOpen, setSidebarOpen] = useState(false);
     return ( 
         <div className="flex h-screen overflow-hidden">
       {/* Sidebar */}
