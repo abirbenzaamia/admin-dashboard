@@ -43,7 +43,7 @@ const columns = [
     width: 150,
     renderCell: (params) => (
     
-<Link to={`/user_profil/${params.id}`} underline="none" >
+<Link to={`/locataire/${params.id}`} underline="none" >
 <Button
      variant="contained"
      color="primary"

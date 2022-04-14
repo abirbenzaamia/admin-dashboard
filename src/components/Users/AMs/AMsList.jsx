@@ -31,7 +31,7 @@ const columns = [
     headerName: 'Actions',
     width: 150,
     renderCell: (params) => (
-      <Link to={`/user_profil/${params.id}`} underline="none" >
+      <Link to={`/am/${params.id}`} underline="none" >
       <Button
            variant="contained"
            color="primary"

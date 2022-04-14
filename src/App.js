@@ -8,6 +8,9 @@ import LocataireProfile from './pages/Profiles/LocataireProfile'
 import Locataires from './pages/UsersLists/LocatairesList/LocatairesList'
 import ATCs from './pages/UsersLists/ATCsList/AtcsList'
 import AMs from './pages/UsersLists/AMsList/AmsList'
+import ATCProfile from './pages/Profiles/ATCProfile'
+import AMProfile from './pages/Profiles/AMProfile'
+
 import { theme } from './theme';
 import { ThemeProvider } from '@mui/material/styles';
 
@@ -43,14 +46,20 @@ function App() {
 <ATCs/>
   </ThemeProvider>}/>
   <Route exact path="/AMs" element={  <ThemeProvider theme={theme}>
-k
+
 <AMs/>
   </ThemeProvider>}/>
 
-        <Route exact path="/user_profil/:id" element={  <ThemeProvider theme={theme}>
-
+        <Route exact path="/locataire/:id" element={  <ThemeProvider theme={theme}>
       <LocataireProfile/>
         </ThemeProvider>} />
+
+        <Route exact path="/atc/:id" element={  <ThemeProvider theme={theme}>
+<ATCProfile/>
+  </ThemeProvider>} />
+  <Route exact path="/am/:id" element={  <ThemeProvider theme={theme}>
+<AMProfile/>
+  </ThemeProvider>} />
         </Routes>
       </BrowserRouter> 
     </div>
