@@ -7,6 +7,7 @@ export function getLocataires() {
 }
 
 export function getLocataireInfo(id) {
+    //console.log(Services.LOCATAIRE_URL+id)
     return axios.get(Services.LOCATAIRE_URL+id)
 }
 export function acceptLocataire(id,argument){

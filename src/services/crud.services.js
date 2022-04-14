@@ -5,6 +5,7 @@ export const Services = {
     AUTH_ATC_URL: URL_ROOT+'/login/atc',
     LOCATAIRE_URL: URL_ROOT+'/locataire/',
     ATC_URL: URL_ROOT+'/atc/',
+    AM_URL: URL_ROOT+'/am/',
 
 }
 

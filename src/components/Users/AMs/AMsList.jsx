@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { DataGrid } from '@mui/x-data-grid';
 import { useState, useEffect } from 'react';
-import {getATCs} from '../../../modules/Users/atcs.crud'
+import {getAMs} from '../../../modules/Users/ams.crud'
 import Button from '@mui/material/Button';
 import { Link } from 'react-router-dom';
 
@@ -49,10 +49,10 @@ const columns = [
 
 
 export default function DataTable() {
-  const [atcs, setAtcs] = useState([]);
+  const [ams, setAMs] = useState([]);
   useEffect(() => {
-    getATCs().then(({ data }) => {
-      setAtcs(data);
+    getAMs().then(({ data }) => {
+      setAMs(data);
     })
     .catch(err => {
       console.log(err)
@@ -61,7 +61,7 @@ export default function DataTable() {
   return (
     <div style={{ height: 400, width: '100%' }}>
       <DataGrid
-        rows={atcs}
+        rows={ams}
         columns={columns}
         pageSize={5}
         rowsPerPageOptions={[5, 10, 25]}

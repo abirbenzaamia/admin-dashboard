@@ -80,7 +80,7 @@ const DashboardTable = () => {
                         '& .MuiChip-label': { fontWeight: 500 }
                       }}
                     />  */}
-           <RequestsActions id = {locataire.id} argument = {'test'}/>
+           <RequestsActions id = {locataire.id} />
                   </TableCell>
                 </TableRow>)
                 }else {

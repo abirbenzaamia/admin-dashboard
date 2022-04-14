@@ -1,15 +1,18 @@
 import Sidebar from '../../components/Sidebar/Sidebar';
 import Header from '../../components/Header/Header';
 import React, { useState } from 'react';
-import UserProfileDetails from "../../components/UserProfile/UserProfileDetails";
-import UserProfile from '../../components/UserProfile/UserProfile'
+import UserProfileDetails from "../../components/Profiles/Locataires/UserProfileDetails";
+import UserProfile from '../../components/Profiles/Locataires/UserProfile'
+
 import {
   Box,
   Container,
   Typography,
   Grid
 } from '@mui/material';
-const UserProfil = () => {
+import { useParams } from 'react-router-dom';
+const UserProfil = (props) => {
+  const {id} = useParams();
     const [sidebarOpen, setSidebarOpen] = useState(true);
     return ( 
         <div className="flex h-screen overflow-hidden">
@@ -31,7 +34,7 @@ const UserProfil = () => {
           sx={{ mb: 3 }}
           variant="h4"
         >
-          Account
+        Profil
         </Typography>
         <Grid
           container
@@ -43,7 +46,7 @@ const UserProfil = () => {
             md={6}
             xs={12}
           >
-            <UserProfile />
+            <UserProfile id={id} /> 
           </Grid>
           <Grid
             item
@@ -51,7 +54,7 @@ const UserProfil = () => {
             md={6}
             xs={12}
           >
-            <UserProfileDetails />
+            <UserProfileDetails id={id} />
           </Grid>
         </Grid>
       </Container>

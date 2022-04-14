@@ -3,6 +3,9 @@ import { DataGrid } from '@mui/x-data-grid';
 import { useState, useEffect } from 'react';
 import {getLocataires} from '../../../modules/Users/locataires.crud'
 import Button from '@mui/material/Button';
+// import Link from '@mui/material/Link';
+import { Link } from 'react-router-dom';
+
 
 
 
@@ -38,18 +41,32 @@ const columns = [
     field: '',
     headerName: 'Actions',
     width: 150,
-    renderCell: () => (
-      <strong>
+    renderCell: (params) => (
+    
+<Link to={`/user_profil/${params.id}`} underline="none" >
+<Button
+     variant="contained"
+     color="primary"
+     size="small"
+     style={{ marginLeft: 16 }}  
+   >
+     Voir profil
+   </Button>
+</Link>
+      // <strong>
        
-        <Button
-          variant="contained"
-          color="primary"
-          size="small"
-          style={{ marginLeft: 16 }}
-        >
-          Voir profil
-        </Button>
-      </strong>
+      //   <Button
+
+      //     variant="contained"
+      //     color="primary"
+      //     size="small"
+      //     style={{ marginLeft: 16 }}
+        
+          
+      //   >
+      //     Voir profil
+      //   </Button>
+      // </strong>
     ),
     sortable: false,
   },

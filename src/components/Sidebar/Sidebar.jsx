@@ -98,7 +98,7 @@ function Sidebar({
             <ul className="mt-3">
               {/* Dashboard */}
               <li className={`px-3 py-2 rounded-sm mb-0.5 last:mb-0 ${pathname === '/' && 'bg-slate-900'}`}>
-                <NavLink end to="/" className={`block text-slate-200 hover:text-white truncate transition duration-150 ${pathname === '/' && 'hover:text-slate-200'}`}>
+                <NavLink end to="/dashboard" className={`block text-slate-200 hover:text-white truncate transition duration-150 ${pathname === '/' && 'hover:text-slate-200'}`}>
                   <div className="flex items-center">
                     <svg className="shrink-0 h-6 w-6" viewBox="0 0 24 24">
                       <path className={`fill-current text-slate-400 ${pathname === '/' && '!text-indigo-500'}`} d="M12 0C5.383 0 0 5.383 0 12s5.383 12 12 12 12-5.383 12-12S18.617 0 12 0z" />
@@ -147,17 +147,17 @@ function Sidebar({
                       <div className="lg:hidden lg:sidebar-expanded:block 2xl:block">
                         <ul className={`pl-9 mt-1 ${!open && 'hidden'}`}>
                           <li className="mb-1 last:mb-0">
-                            <NavLink end to="/" className="block text-slate-400 hover:text-slate-200 transition duration-150 truncate">
+                            <NavLink end to="/ATCs" className="block text-slate-400 hover:text-slate-200 transition duration-150 truncate">
                               <span className="text-sm font-medium lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">ATC</span>
                             </NavLink>
                           </li>
                           <li className="mb-1 last:mb-0">
-                            <NavLink end to="/" className="block text-slate-400 hover:text-slate-200 transition duration-150 truncate">
+                            <NavLink end to="/locataires" className="block text-slate-400 hover:text-slate-200 transition duration-150 truncate">
                               <span className="text-sm font-medium lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">Locataires</span>
                             </NavLink>
                           </li>
                           <li className="mb-1 last:mb-0">
-                            <NavLink end to="/" className="block text-slate-400 hover:text-slate-200 transition duration-150 truncate">
+                            <NavLink end to="/ams" className="block text-slate-400 hover:text-slate-200 transition duration-150 truncate">
                               <span className="text-sm font-medium lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">Agents de maintenance</span>
                             </NavLink>
                           </li>

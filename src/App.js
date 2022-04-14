@@ -4,9 +4,10 @@ import React, { useState } from 'react';
 import { BrowserRouter, Route, Routes , Navigate } from 'react-router-dom';
 import Dashboard from './pages/Dashboard/Dashboard';
 import Login from './pages/Login/Login';
-import UserProfile from './pages/UserProfile/UserProfile'
+import LocataireProfile from './pages/Profiles/LocataireProfile'
 import Locataires from './pages/UsersLists/LocatairesList/LocatairesList'
 import ATCs from './pages/UsersLists/ATCsList/AtcsList'
+import AMs from './pages/UsersLists/AMsList/AmsList'
 import { theme } from './theme';
 import { ThemeProvider } from '@mui/material/styles';
 
@@ -41,10 +42,14 @@ function App() {
 
 <ATCs/>
   </ThemeProvider>}/>
+  <Route exact path="/AMs" element={  <ThemeProvider theme={theme}>
+k
+<AMs/>
+  </ThemeProvider>}/>
 
-        <Route exact path="/user_profil" element={  <ThemeProvider theme={theme}>
+        <Route exact path="/user_profil/:id" element={  <ThemeProvider theme={theme}>
 
-      <UserProfile/>
+      <LocataireProfile/>
         </ThemeProvider>} />
         </Routes>
       </BrowserRouter> 

@@ -9,7 +9,7 @@ import {acceptLocataire } from '../../../modules/Users/locataires.crud';
 import {refuseLocataire} from '../../../modules/Users/locataires.crud';
 
 
-export default function PositionedMenu({id,argument}) {
+export default function PositionedMenu({id}) {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
@@ -19,7 +19,7 @@ export default function PositionedMenu({id,argument}) {
     setAnchorEl(null);
   };
 //accepting locataire
-const handleAcceptLocataire = () => {
+const handleAcceptLocataire = (argument) => {
   acceptLocataire(id,argument).then(({ data }) => {
    console.log(data)
   })
@@ -28,7 +28,7 @@ const handleAcceptLocataire = () => {
   })
 }
 //refusing locataire
-const handleRefuseLocataire = () => {
+const handleRefuseLocataire = (argument) => {
   refuseLocataire(id,argument).then(({ data }) => {
    console.log(data)
   })
@@ -63,8 +63,8 @@ const handleRefuseLocataire = () => {
       >
         <MenuItem  onClick={handleClose}> <PermIdentityIcon/> Voir profil </MenuItem>
         <Divider sx={{ my: 0.5 }} />
-        <MenuItem sx={{color : '#56CA00'}} onClick={handleAcceptLocataire}>Accepter</MenuItem>
-        <MenuItem  sx={{color : '#FF4C51'}} onClick={handleRefuseLocataire}>Refuser</MenuItem>
+        <MenuItem sx={{color : '#56CA00'}} onClick={handleAcceptLocataire('test')}>Accepter</MenuItem>
+        <MenuItem  sx={{color : '#FF4C51'}} onClick={handleRefuseLocataire('test')}>Refuser</MenuItem>
       </Menu>
     </div>
   );
