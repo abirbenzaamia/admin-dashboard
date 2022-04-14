@@ -58,7 +58,7 @@ const DashboardTable = () => {
           <TableBody>
             {locataires.map(locataire => {
               if (locataire.Statut !== null) {
-                if (locataire.type_utilisateur === "locataire"  && locataire.Statut.val_statut ==="demandé" ) {
+                 if (locataire.Statut.val_statut ==="demandé" ) {
                   return ( <TableRow hover key={locataire.id} sx={{ '&:last-of-type td, &:last-of-type th': { border: 0 } }}>
                   <TableCell sx={{ py: theme => `${theme.spacing(0.5)} !important` }}>
                   <img className="rounded-full" src={locataire.Locataire.photo} width="40" height="40" alt={locataire.nom} />
@@ -83,9 +83,9 @@ const DashboardTable = () => {
            <RequestsActions id = {locataire.id} />
                   </TableCell>
                 </TableRow>)
-                }else {
-                  return( <TableRow key={locataire.id} ></TableRow> )
-                }
+                 }else {
+                   return( <TableRow key={locataire.id} ></TableRow> )
+                 }
               }
              
 
@@ -97,6 +97,7 @@ const DashboardTable = () => {
         </Table>
       </TableContainer>
     </Card>
+    
   )
 }
 

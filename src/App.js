@@ -36,7 +36,9 @@ function App() {
 
 <Login/>
   </ThemeProvider>} />
-        <Route exact path="/dashboard" element={<Dashboard/>} />
+        <Route exact path="/dashboard"  element={  <ThemeProvider theme={theme}>
+      <Dashboard/>
+        </ThemeProvider>} />
         <Route exact path="/locataires" element={  <ThemeProvider theme={theme}>
 
 <Locataires/>
