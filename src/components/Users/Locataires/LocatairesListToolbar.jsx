@@ -24,7 +24,7 @@ const LocatairesListToolbar = (props) => (
           sx={{ m: 1 }}
           variant="h4"
         >
-          Customers
+          Listes des locataires
         </Typography>
         <Box sx={{ m: 1 }}>
        
@@ -33,7 +33,7 @@ const LocatairesListToolbar = (props) => (
             color="primary"
             variant="contained"
           >
-            Add Customers
+            Ajouter un locataire
           </Button>
         </Box>
       </Box>

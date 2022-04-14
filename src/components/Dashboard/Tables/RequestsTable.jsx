@@ -12,21 +12,9 @@ import RequestsActions from './RequestsActions'
 import Typography from '@mui/material/Typography'
 
 
-
-
-
-const statusObj = {
-  demandé: { color: 'info' },
-  rejected: { color: 'error' },
-  current: { color: 'primary' },
-  demande: { color: 'warning' },
-  professional: { color: 'success' }
-}
-
 const DashboardTable = () => {
     
     const [locataires, setlocataires] = useState([])
-    var locataireStatus;
    
 
     useEffect(() => {

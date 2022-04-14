@@ -2,7 +2,9 @@ import Sidebar from '../../components/Sidebar/Sidebar';
 import Header from '../../components/Header/Header';
 import React, { useState } from 'react';
 import UserProfileDetails from "../../components/Profiles/Locataires/UserProfileDetails";
-import UserProfile from '../../components/Profiles/Locataires/UserProfile'
+import UserProfile from '../../components/Profiles/Locataires/UserProfile';
+import {useEffect } from 'react';
+import {getLocataireInfo} from '../../modules/Users/locataires.crud'
 
 import {
   Box,
@@ -12,7 +14,20 @@ import {
 } from '@mui/material';
 import { useParams } from 'react-router-dom';
 const UserProfil = (props) => {
-  const {id} = useParams();
+  const [user, setUser] = useState([]);
+   const {id} = useParams();
+  console.log(props.id);
+  useEffect(() => {
+    getLocataireInfo(props.id).then(({ data }) => {
+      setUser(data.user);
+      console.log(data.user);
+    })
+    .catch(err => {
+      console.log(err)
+    })
+  }, [props.id])
+  console.log(user);
+
     const [sidebarOpen, setSidebarOpen] = useState(true);
     return ( 
         <div className="flex h-screen overflow-hidden">

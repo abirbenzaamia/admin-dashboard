@@ -24,7 +24,7 @@ const ATCsListToolbar = (props) => (
           sx={{ m: 1 }}
           variant="h4"
         >
-          Customers
+          Listes des ATC
         </Typography>
         <Box sx={{ m: 1 }}>
        
@@ -33,7 +33,7 @@ const ATCsListToolbar = (props) => (
             color="primary"
             variant="contained"
           >
-            Add Customers
+            Ajouter un ATC
           </Button>
         </Box>
       </Box>

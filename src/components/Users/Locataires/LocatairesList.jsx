@@ -53,20 +53,7 @@ const columns = [
      Voir profil
    </Button>
 </Link>
-      // <strong>
-       
-      //   <Button
-
-      //     variant="contained"
-      //     color="primary"
-      //     size="small"
-      //     style={{ marginLeft: 16 }}
-        
-          
-      //   >
-      //     Voir profil
-      //   </Button>
-      // </strong>
+     
     ),
     sortable: false,
   },
@@ -78,7 +65,13 @@ export default function DataTable() {
   const [locataires, setLocataires] = useState([]);
   useEffect(() => {
     getLocataires().then(({ data }) => {
-      setLocataires(data);
+      var acceptedLocataire = [];
+      data.forEach(row => {
+        if (row.Statut.val_statut==="accepté") {
+          acceptedLocataire.push(row);
+        }
+      });
+      setLocataires( acceptedLocataire);
     })
     .catch(err => {
       console.log(err)

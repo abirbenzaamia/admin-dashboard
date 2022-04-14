@@ -22,6 +22,7 @@ import {getLocataireInfo} from '../../../modules/Users/locataires.crud'
   
  const UserProfile = (props) => {
   const [user, setUser] = useState([]);
+  
   console.log(props.id);
   useEffect(() => {
     getLocataireInfo(props.id).then(({ data }) => {

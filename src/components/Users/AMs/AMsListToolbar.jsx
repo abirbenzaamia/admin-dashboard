@@ -12,12 +12,27 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
-import * as React from 'react';
+import { useState} from 'react';
+import {addAM} from '../../../modules/Users/ams.crud'
+
 
   
 const AMsListToolbar = (props) => {
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = useState(false);
+  const [nom, setNom] = useState();
+  const [prenom, setPrenom] = useState();
+  const [email, setEmail] = useState();
+  const [num_tel, setNumtel] = useState();
+  const [mdp, setMdp] = useState();
 
+  const handleSubmit = () => {
+    addAM(nom,prenom,email,num_tel,mdp).then(({ data }) => {
+     
+    })
+    .catch(err => {
+      console.log(err)
+    })
+  }
   const handleClickOpen = () => {
     setOpen(true);
   };
@@ -39,7 +54,7 @@ const AMsListToolbar = (props) => {
         sx={{ m: 1 }}
         variant="h4"
       >
-        Liste des agents de maintenances
+        Liste des agents de maintenance
       </Typography>
       <Box sx={{ m: 1 }}>
      
@@ -65,6 +80,7 @@ const AMsListToolbar = (props) => {
             type="string"
             fullWidth
             variant="standard"
+            onChange={e => setNom(e.target.value)}
           />
           <TextField
             autoFocus
@@ -74,6 +90,7 @@ const AMsListToolbar = (props) => {
             type="string"
             fullWidth
             variant="standard"
+            onChange={e => setPrenom(e.target.value)}
           />
           <TextField
             autoFocus
@@ -83,6 +100,7 @@ const AMsListToolbar = (props) => {
             type="email"
             fullWidth
             variant="standard"
+            onChange={e => setEmail(e.target.value)}
           />
           <TextField
             autoFocus
@@ -92,6 +110,7 @@ const AMsListToolbar = (props) => {
             type="string"
             fullWidth
             variant="standard"
+            onChange={e => setNumtel(e.target.value)}
           />
            <TextField
             autoFocus
@@ -101,12 +120,13 @@ const AMsListToolbar = (props) => {
             type="password"
             fullWidth
             variant="standard"
+            onChange={e => setMdp(e.target.value)}
           />
          </form>
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose}>Annuler</Button>
-          <Button onClick={handleClose}>Ajouter</Button>
+          <Button onClick={handleSubmit} >Ajouter</Button>
         </DialogActions>
       </Dialog>
       </Box>

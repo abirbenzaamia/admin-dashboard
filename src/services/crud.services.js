@@ -6,6 +6,7 @@ export const Services = {
     LOCATAIRE_URL: URL_ROOT+'/locataire/',
     ATC_URL: URL_ROOT+'/atc/',
     AM_URL: URL_ROOT+'/am/',
+    ADD_AM_URL: URL_ROOT+'/am',
 
 }
 
