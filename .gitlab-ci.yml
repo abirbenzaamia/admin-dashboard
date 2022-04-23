@@ -20,7 +20,7 @@ build:
   before_script:
     - npm install
   script:
-    - npm run build
+    - CI=false npm run build
 
 publish:
   image: node:latest
