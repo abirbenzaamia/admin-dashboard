@@ -6,6 +6,7 @@
 
 variables:
   NETLIFY_ACCESS_TOKEN: "xEz5nhAWRhO4uhz84KMHXZdBFw86swDfDAqXuVSe5VA"
+  CI: "false"
 
 stages:
   - test
