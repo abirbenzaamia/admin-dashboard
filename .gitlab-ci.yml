@@ -1,0 +1,17 @@
+# This file is a template, and might need editing before it works on your project.
+# To contribute improvements to CI/CD templates, please follow the Development guide at:
+# https://docs.gitlab.com/ee/development/cicd/templates.html
+# This specific template is located at:
+# https://gitlab.com/gitlab-org/gitlab/-/blob/master/lib/gitlab/ci/templates/npm.gitlab-ci.yml
+
+variables:
+  NETLIFY_ACCESS_TOKEN: "xEz5nhAWRhO4uhz84KMHXZdBFw86swDfDAqXuVSe5VA"
+
+publish:
+  image: node:latest
+  stage: deploy
+  before_script:
+    - npm install netlify-cli --save-dev
+
+  script:
+    - netlify init
