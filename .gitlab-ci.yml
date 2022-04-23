@@ -31,4 +31,4 @@ netlify:
     - npm install netlify-cli -g
 
   script:
-    - netlify deploy --dir=build
+    - netlify deploy --dir=build --prod
