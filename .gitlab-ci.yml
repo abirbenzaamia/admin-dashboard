@@ -26,7 +26,7 @@ publish:
   image: node:latest
   stage: deploy
   before_script:
-    - npm install netlify-cli --save-dev
+    - npm install netlify-cli -g
 
   script:
     - netlify init
