@@ -28,6 +28,8 @@ netlify:
   image: node:latest
   stage: deploy
   before_script:
+    ## Doing this so every route is redirected to index.html. Check https://blog.karenying.com/posts/404-react-page-not-found
+    - echo '/* /index.html 200' >> build/_redirects
     - npm install netlify-cli -g
 
   script:
