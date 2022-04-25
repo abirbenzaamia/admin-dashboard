@@ -73,7 +73,7 @@ const AMsListToolbar = (props) => {
           </DialogContentText>
          <form noValidate autoComplete='off' >
          <TextField
-            autoFocus
+            
             margin="dense"
             id="nom"
             label="Nom"
@@ -83,7 +83,7 @@ const AMsListToolbar = (props) => {
             onChange={e => setNom(e.target.value)}
           />
           <TextField
-            autoFocus
+            
             margin="dense"
             id="prenom"
             label="Prénom"
@@ -93,7 +93,7 @@ const AMsListToolbar = (props) => {
             onChange={e => setPrenom(e.target.value)}
           />
           <TextField
-            autoFocus
+            
             margin="dense"
             id="email"
             label="Email"
@@ -103,7 +103,7 @@ const AMsListToolbar = (props) => {
             onChange={e => setEmail(e.target.value)}
           />
           <TextField
-            autoFocus
+            
             margin="dense"
             id="num_tel"
             label="N° téléphone"
@@ -113,7 +113,7 @@ const AMsListToolbar = (props) => {
             onChange={e => setNumtel(e.target.value)}
           />
            <TextField
-            autoFocus
+            
             margin="dense"
             id="mdp"
             label="Mot de passe"
