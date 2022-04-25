@@ -11,15 +11,6 @@ import {
   import { useState , useEffect } from 'react';
 import {getLocataireInfo} from '../../../modules/Users/locataires.crud'
   
-  const user = {
-    avatar: '../../assets/images/atc.jpg',
-    city: 'Los Angeles',
-    country: 'USA',
-    jobTitle: 'Senior Developer',
-    name: 'Katarina Smith',
-    timezone: 'GTM-7'
-  };
-  
  const UserProfile = (props) => {
   const [user, setUser] = useState([]);
   

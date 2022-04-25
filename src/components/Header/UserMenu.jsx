@@ -7,7 +7,18 @@ import UserAvatar from '../../assets/images/atc.jpg';
 function UserMenu() {
 
   const [dropdownOpen, setDropdownOpen] = useState(false);
-
+  const [nom, setNom] = useState(() => {
+    // getting stored value
+    const saved = localStorage.getItem("user");
+    const user = JSON.parse(saved);
+    return user.nom;
+  });
+  const [prenom, setPrenom] = useState(() => {
+    // getting stored value
+    const saved = localStorage.getItem("user");
+    const user = JSON.parse(saved);
+    return user.prenom;
+  });
   const trigger = useRef(null);
   const dropdown = useRef(null);
 
@@ -42,7 +53,7 @@ function UserMenu() {
       >
         <img className="w-8 h-8 rounded-full" src={UserAvatar} width="32" height="32" alt="User" />
         <div className="flex items-center truncate">
-          <span className="truncate ml-2 text-sm font-medium group-hover:text-slate-800">Admin Admin</span>
+          <span className="truncate ml-2 text-sm font-medium group-hover:text-slate-800">{nom+" "+prenom}</span>
           <svg className="w-3 h-3 shrink-0 ml-1 fill-current text-slate-400" viewBox="0 0 12 12">
             <path d="M5.9 11.4L.5 6l1.4-1.4 4 4 4-4L11.3 6z" />
           </svg>
@@ -65,8 +76,14 @@ function UserMenu() {
           onBlur={() => setDropdownOpen(false)}
         >
           <div className="pt-0.5 pb-2 px-3 mb-1 border-b border-slate-200">
-            <div className="font-medium text-slate-800">Acme Inc.</div>
-            <div className="text-xs text-slate-500 italic">Administrator</div>
+            <div className="font-medium text-slate-800">{nom+" "+prenom} </div>
+            <Link
+                className="font-medium text-sm text-indigo-500 hover:text-indigo-600 flex items-center py-1 px-3"
+                to="/mon_compte"
+                onClick={() => setDropdownOpen(!dropdownOpen)}
+              >
+                Mon compte
+              </Link>
           </div>
           <ul>
             <li>
@@ -75,7 +92,7 @@ function UserMenu() {
                 to="/"
                 onClick={() => setDropdownOpen(!dropdownOpen)}
               >
-                Settings
+                Paramètres 
               </Link>
             </li>
             <li>
@@ -84,7 +101,7 @@ function UserMenu() {
                 to="/"
                 onClick={() => setDropdownOpen(!dropdownOpen)}
               >
-                Sign Out
+                Se déconnecter
               </Link>
             </li>
           </ul>

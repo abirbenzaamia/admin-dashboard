@@ -62,6 +62,7 @@ function App() {
   <Route exact path="/am/:id" element={  <ThemeProvider theme={theme}>
 <AMProfile/>
   </ThemeProvider>} />
+
         </Routes>
       </BrowserRouter> 
     </div>

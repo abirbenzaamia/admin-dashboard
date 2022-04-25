@@ -1,5 +1,13 @@
 import axios from "axios";
-import { authUrls } from "./auth.constants";
-export function loginATC(email, mdp) {
-  return axios.post(authUrls.LOGIN_ATC_URL, { email, mdp });
+import { authUrls } from "./Auth.constants";
+
+
+
+export function loginATC(email,mdp) {
+  const data = {
+      "email" : email ,
+      "mdp" : mdp
+};
+console.log(data);
+return axios.post(authUrls.LOGIN_ATC_URL, data)
 }

@@ -18,8 +18,17 @@ export function addATC(nom,prenom,email,num_tel,mdp) {
             "num_tel" : num_tel,
             "mdp" : mdp
     };
-    console.log(data);
     return axios.post(Services.ADD_ATC_URL, data)
         
+}
+export function modifyAccountATC(id,nom,prenom,email,num_tel,mdp) {
+    const data = {
+            "nom" : nom,
+            "prenom" : prenom ,
+            "email" : email ,
+            "num_tel" : num_tel,
+            "mdp" : mdp
+    };
+    return axios.put(Services.ATC_URL+id, data)    
 }
 
