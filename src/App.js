@@ -10,6 +10,7 @@ import ATCs from './pages/UsersLists/ATCsList/AtcsList'
 import AMs from './pages/UsersLists/AMsList/AmsList'
 import ATCProfile from './pages/Profiles/ATCProfile'
 import AMProfile from './pages/Profiles/AMProfile'
+import MyAccount from './pages/MyAccount/MyAccount'
 
 import { theme } from './theme';
 import { ThemeProvider } from '@mui/material/styles';
@@ -33,36 +34,23 @@ function App() {
         <Routes>
         <Route path="" element={<Navigate to="/login" />} />
         <Route exact path="/login" element={ <ThemeProvider theme={theme}>
-
-<Login/>
-  </ThemeProvider>} />
+           <Login/> </ThemeProvider>} />
         <Route exact path="/dashboard"  element={  <ThemeProvider theme={theme}>
-      <Dashboard/>
-        </ThemeProvider>} />
+           <Dashboard/> </ThemeProvider>} />
         <Route exact path="/locataires" element={  <ThemeProvider theme={theme}>
-
-<Locataires/>
-  </ThemeProvider>}/>
-  <Route exact path="/ATCs" element={  <ThemeProvider theme={theme}>
-
-<ATCs/>
-  </ThemeProvider>}/>
-  <Route exact path="/AMs" element={  <ThemeProvider theme={theme}>
-
-<AMs/>
-  </ThemeProvider>}/>
-
+           <Locataires/> </ThemeProvider>}/>
+        <Route exact path="/ATCs" element={  <ThemeProvider theme={theme}>
+          <ATCs/> </ThemeProvider>}/>
+        <Route exact path="/AMs" element={  <ThemeProvider theme={theme}>
+          <AMs/> </ThemeProvider>}/>
         <Route exact path="/locataire/:id" element={  <ThemeProvider theme={theme}>
-      <LocataireProfile/>
-        </ThemeProvider>} />
-
+          <LocataireProfile/> </ThemeProvider>} />
         <Route exact path="/atc/:id" element={  <ThemeProvider theme={theme}>
-<ATCProfile/>
-  </ThemeProvider>} />
-  <Route exact path="/am/:id" element={  <ThemeProvider theme={theme}>
-<AMProfile/>
-  </ThemeProvider>} />
-
+          <ATCProfile/> </ThemeProvider>} />
+        <Route exact path="/am/:id" element={  <ThemeProvider theme={theme}>
+          <AMProfile/> </ThemeProvider>} />
+        <Route exact path="/mon_compte" element={  <ThemeProvider theme={theme}>
+          <MyAccount/> </ThemeProvider>} />
         </Routes>
       </BrowserRouter> 
     </div>

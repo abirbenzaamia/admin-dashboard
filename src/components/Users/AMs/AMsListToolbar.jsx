@@ -27,7 +27,7 @@ const AMsListToolbar = (props) => {
 
   const handleSubmit = () => {
     addAM(nom,prenom,email,num_tel,mdp).then(({ data }) => {
-     
+     console.log(data)
     })
     .catch(err => {
       console.log(err)

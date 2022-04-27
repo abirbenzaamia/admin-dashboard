@@ -1,8 +1,8 @@
 import Sidebar from '../../components/Sidebar/Sidebar';
 import Header from '../../components/Header/Header';
 import React, { useState } from 'react';
-import ATCProfileDetails from "../../components/Profiles/ATCs/ATCProfileDetails";
-import ATCProfile from '../../components/Profiles/ATCs/ATCProfile'
+import MyAccount from '../../components/MyAccount/MyAccount'
+import MyAccountDetails from '../../components/MyAccount/MyAccountDetails'
 
 import {
   Box,
@@ -46,7 +46,7 @@ const MyProfile = (props) => {
             md={6}
             xs={12}
           >
-            <ATCProfile id={id} /> 
+            <MyAccount  /> 
           </Grid>
           <Grid
             item
@@ -54,7 +54,7 @@ const MyProfile = (props) => {
             md={6}
             xs={12}
           >
-            <ATCProfileDetails id={id} />
+            <MyAccountDetails  />
           </Grid>
         </Grid>
       </Container>

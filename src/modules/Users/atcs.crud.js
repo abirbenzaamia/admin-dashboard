@@ -21,14 +21,14 @@ export function addATC(nom,prenom,email,num_tel,mdp) {
     return axios.post(Services.ADD_ATC_URL, data)
         
 }
-export function modifyAccountATC(id,nom,prenom,email,num_tel,mdp) {
+export function modifyInfoATC(id,nom,prenom,email,num_tel) {
     const data = {
             "nom" : nom,
             "prenom" : prenom ,
             "email" : email ,
             "num_tel" : num_tel,
-            "mdp" : mdp
     };
+    console.log(data)
     return axios.put(Services.ATC_URL+id, data)    
 }
 
