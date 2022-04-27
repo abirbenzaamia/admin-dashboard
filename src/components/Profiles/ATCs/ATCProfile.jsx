@@ -9,24 +9,13 @@ import {
     Typography
   } from '@mui/material';
   import { useState , useEffect } from 'react';
-import {getATCInfo} from '../../../modules/Users/atcs.crud'
+//import {getATCInfo} from '../../../modules/Users/atcs.crud'
   
- const ATCProfile = (props) => {
-  const [user, setUser] = useState([]);
-  console.log(props.id);
-  useEffect(() => {
-    getATCInfo(props.id).then(({ data }) => {
-      setUser(data.user);
-      console.log(data.user);
+ const ATCProfile = ({user}) => {
+  //const [user, setUser] = useState(props.user);
 
-
-    })
-    .catch(err => {
-      console.log(err)
-    })
-  }, [props.id])
   return (
-    <Card>
+    <Card >
     <CardContent>
       <Box
         sx={{
@@ -48,25 +37,32 @@ import {getATCInfo} from '../../../modules/Users/atcs.crud'
           gutterBottom
           variant="h5"
         >
-          {user.name}
+          {`${user.nom} ${user.prenom}`}
         </Typography>
         <Typography
           color="textSecondary"
           variant="body2"
         >
-         
+          {user.type_utilisateur}
+          
         </Typography>
         <Typography
           color="textSecondary"
           variant="body2"
         >
-          {user.timezone}
+          {user.createdAt}
         </Typography>
       </Box>
     </CardContent>
     <Divider />
     <CardActions>
-     
+      <Button
+        color="primary"
+        fullWidth
+        variant="text"
+      >
+        Télécharger une photo
+      </Button>
     </CardActions>
   </Card>
    );

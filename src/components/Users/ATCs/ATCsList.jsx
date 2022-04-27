@@ -49,6 +49,7 @@ const columns = [
 
 
 export default function DataTable() {
+  const [pageSize, setPageSize] = React.useState(5);
   const [atcs, setAtcs] = useState([]);
   useEffect(() => {
     getATCs().then(({ data }) => {
@@ -63,8 +64,10 @@ export default function DataTable() {
       <DataGrid
         rows={atcs}
         columns={columns}
-        pageSize={5}
-        rowsPerPageOptions={[5, 10, 25]}
+        pageSize={pageSize}
+        onPageSizeChange={(newPageSize) => setPageSize(newPageSize)}
+        rowsPerPageOptions={[5, 10, 20]}
+        pagination
         checkboxSelection
       />
     </div>

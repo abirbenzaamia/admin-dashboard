@@ -1,5 +1,5 @@
 import { useState , useEffect } from 'react';
-import {getAMInfo} from '../../../modules/Users/ams.crud'
+import {getATCInfo} from '../../../modules/Users/atcs.crud'
 
 
 
@@ -13,49 +13,35 @@ import {
   Grid
 } from '@mui/material';
 import TextField from '@mui/material/TextField';
+import {modifyInfoAM} from '../../../modules/Users/ams.crud'
 
-const states = [
-  {
-    value: 'alabama',
-    label: 'Alabama'
-  },
-  {
-    value: 'new-york',
-    label: 'New York'
-  },
-  {
-    value: 'san-francisco',
-    label: 'San Francisco'
-  }
-];
 
-const UserProfileDetails = (props) => {
-  const [values, setValues] = useState([]);
-  console.log(props.id);
-  useEffect(() => {
-    getAMInfo(props.id).then(({ data }) => {
-      setValues(data.user);
-      console.log(data.user);
-
+const AMProfileDetails = ({user}) => {
+  console.log(user);
+  const [id,setId] = useState(user.id);
+  const [nom, setNom] = useState(user.nom);
+  const [prenom, setPrenom] = useState(user.prenom);
+  const [email, setEmail] = useState(user.email);
+  const [num_tel, setNumtel] = useState(user.num_tel);
+  
+  const handleSubmit = () => {
+    modifyInfoAM(id,nom,prenom,email,num_tel).then(({ data }) => {
+      window.location.reload(false);
+     console.log(data)
     })
     .catch(err => {
       console.log(err)
     })
-  }, [props.id])
-  const handleChange = (event) => {
-    setValues();
-  };
-  console.log(values.nom);
-  return (
+  }
+   return (
     <form
     autoComplete="off"
     noValidate
-    {...props}
   >
     <Card>
       <CardHeader
-        subheader="Vous pouvez modifier les données"
-        title="Profil"
+        subheader="Vous pouvez modifier vos informations"
+        title="Mon Profil"
       />
       <Divider />
       <CardContent>
@@ -70,12 +56,11 @@ const UserProfileDetails = (props) => {
           >
             <TextField
               fullWidth
-              //label='Nom'
-              onChange={handleChange}
-              required
+              label="Nom"
+              name="nom"
+              value={nom}
               variant="outlined"
-              defaultValue={values.nom}
-              value={values.nom}
+              onChange={e => setNom(e.target.value)}
             />
           </Grid>
           <Grid
@@ -85,28 +70,12 @@ const UserProfileDetails = (props) => {
           >
             <TextField
               fullWidth
-              //label='Prénom'
-              onChange={handleChange}
-              value={values.prenom}
-              required
+              label="Prénom"
+              name="prenom"
+              onChange={e => setPrenom(e.target.value)}
+              value={prenom}
               variant="outlined"
-              defaultValue={values.prenom}
             />
-          </Grid>
-          <Grid
-            item
-            md={6}
-            xs={12}
-          >
-       <TextField
-               fullWidth
-               //label="Email"
-               name="phone"
-               onChange={handleChange}
-               value={values.email}
-               variant="outlined"
-               defaultValue={values.email}
-              />
           </Grid>
           <Grid
             item
@@ -115,29 +84,29 @@ const UserProfileDetails = (props) => {
           >
             <TextField
               fullWidth
-              //label="N° téléphone"
-              name="phone"
-              onChange={handleChange}
+              label="Adresse email"
+              name="email"
+              onChange={e => setEmail(e.target.value)}
+              value={email}
+              variant="outlined"
+            />
+          </Grid>
+          <Grid
+            item
+            md={6}
+            xs={12}
+          >
+            <TextField
+              fullWidth
+              label="Numéro de téléphone"
+              name="num_tel"
+              onChange={e => setNumtel(e.target.value)}
               type="number"
-              value={values.num_tel}
+              value={num_tel}
               variant="outlined"
-              defaultValue={values.num_tel}
             />
           </Grid>
-          <Grid
-            item
-            md={6}
-            xs={12}
-          >
-           
-          </Grid>
-          <Grid
-            item
-            md={6}
-            xs={12}
-          >
-            
-          </Grid>
+         
         </Grid>
       </CardContent>
       <Divider />
@@ -151,8 +120,9 @@ const UserProfileDetails = (props) => {
         <Button
           color="primary"
           variant="contained"
+          onClick={handleSubmit}
         >
-          Sauvegarger
+          Sauvegarder
         </Button>
       </Box>
     </Card>
@@ -161,4 +131,4 @@ const UserProfileDetails = (props) => {
 };
 
 
-export default UserProfileDetails;
+export default AMProfileDetails;

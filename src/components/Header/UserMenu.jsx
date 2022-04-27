@@ -61,7 +61,7 @@ function UserMenu() {
       </button>
 
       <Transition
-        className="origin-top-right z-10 absolute top-full right-0 min-w-44 bg-white border border-slate-200 py-1.5 rounded shadow-lg overflow-hidden mt-1"
+        className="origin-top-right w-52 z-10 absolute top-full right-0 min-w-44 bg-white border border-slate-200 py-1.5 rounded shadow-lg overflow-hidden mt-1"
         show={dropdownOpen}
         enter="transition ease-out duration-200 transform"
         enterStart="opacity-0 -translate-y-2"
@@ -74,15 +74,16 @@ function UserMenu() {
           ref={dropdown}
           onFocus={() => setDropdownOpen(true)}
           onBlur={() => setDropdownOpen(false)}
+          
         >
-          <div className="pt-0.5 pb-2 px-3 mb-1 border-b border-slate-200">
-            <div className="font-medium text-slate-800">{nom+" "+prenom} </div>
+          <div className="pt-0.5 pb-2 px-5 mb-1 border-b border-slate-200">
+            <div className="font-medium text-slate-800 items-center  py-1 px-3">{nom+" "+prenom} </div>
             <Link
                 className="font-medium text-sm text-indigo-500 hover:text-indigo-600 flex items-center py-1 px-3"
                 to="/mon_compte"
                 onClick={() => setDropdownOpen(!dropdownOpen)}
               >
-                Mon compte
+                Gérer mon compte
               </Link>
           </div>
           <ul>

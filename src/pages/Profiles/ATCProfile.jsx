@@ -1,8 +1,9 @@
 import Sidebar from '../../components/Sidebar/Sidebar';
 import Header from '../../components/Header/Header';
-import React, { useState } from 'react';
+import React, { useState , useEffect } from 'react';
 import ATCProfileDetails from "../../components/Profiles/ATCs/ATCProfileDetails";
 import ATCProfile from '../../components/Profiles/ATCs/ATCProfile'
+import {getATCInfo} from '../../modules/Users/atcs.crud'
 
 import {
   Box,
@@ -13,7 +14,19 @@ import {
 import { useParams } from 'react-router-dom';
 const UserProfil = (props) => {
   const {id} = useParams();
+  const [user, setUser] = useState();
+  useEffect(() => {
+    getATCInfo(id).then(({ data }) => {
+      setUser(data.user);
+      console.log(data.user);
+
+    })
+    .catch(err => {
+      console.log(err)
+    })
+  }, [id])
     const [sidebarOpen, setSidebarOpen] = useState(true);
+    
     return ( 
         <div className="flex h-screen overflow-hidden">
       {/* Sidebar */}
@@ -46,7 +59,8 @@ const UserProfil = (props) => {
             md={6}
             xs={12}
           >
-            <ATCProfile id={id} /> 
+            {user && <ATCProfile user={user}  />}
+ 
           </Grid>
           <Grid
             item
@@ -54,7 +68,8 @@ const UserProfil = (props) => {
             md={6}
             xs={12}
           >
-            <ATCProfileDetails id={id} />
+             {user && <ATCProfileDetails user={user} />}
+            
           </Grid>
         </Grid>
       </Container>

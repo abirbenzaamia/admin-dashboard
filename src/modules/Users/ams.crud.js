@@ -23,5 +23,15 @@ export function addAM(nom,prenom,email,num_tel,mdp) {
     return axios.post(Services.ADD_AM_URL, data)
         
 }
+export function modifyInfoAM(id,nom,prenom,email,num_tel) {
+    const data = {
+            "nom" : nom,
+            "prenom" : prenom ,
+            "email" : email ,
+            "num_tel" : num_tel,
+    };
+    console.log(data)
+    return axios.put(Services.AM_URL+id, data)    
+}
 
 

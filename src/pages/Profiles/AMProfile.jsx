@@ -1,8 +1,9 @@
 import Sidebar from '../../components/Sidebar/Sidebar';
 import Header from '../../components/Header/Header';
-import React, { useState } from 'react';
+import  { useState , useEffect } from 'react';
 import AMProfileDetails from "../../components/Profiles/AMs/AMProfileDetails";
 import AMProfile from '../../components/Profiles/AMs/AMProfile'
+import {getAMInfo} from '../../modules/Users/ams.crud'
 
 import {
   Box,
@@ -13,6 +14,17 @@ import {
 import { useParams } from 'react-router-dom';
 const UserProfil = (props) => {
   const {id} = useParams();
+  const [user, setUser] = useState();
+  useEffect(() => {
+    getAMInfo(id).then(({ data }) => {
+      setUser(data.user);
+      console.log(data.user);
+
+    })
+    .catch(err => {
+      console.log(err)
+    })
+  }, [id])
     const [sidebarOpen, setSidebarOpen] = useState(true);
     return ( 
         <div className="flex h-screen overflow-hidden">
@@ -46,7 +58,7 @@ const UserProfil = (props) => {
             md={6}
             xs={12}
           >
-            <AMProfile id={id} /> 
+            {user && <AMProfile user={user}  />} 
           </Grid>
           <Grid
             item
@@ -54,7 +66,7 @@ const UserProfil = (props) => {
             md={6}
             xs={12}
           >
-            <AMProfileDetails id={id} />
+            {user && <AMProfileDetails user={user} />}
           </Grid>
         </Grid>
       </Container>
