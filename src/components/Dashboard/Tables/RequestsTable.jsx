@@ -49,7 +49,11 @@ const DashboardTable = () => {
                  if (locataire.Statut.val_statut ==="demandé" ) {
                   return ( <TableRow hover key={locataire.id} sx={{ '&:last-of-type td, &:last-of-type th': { border: 0 } }}>
                   <TableCell sx={{ py: theme => `${theme.spacing(0.5)} !important` }}>
-                  <img className="rounded-full" src={locataire.Locataire.photo} width="40" height="40" alt={locataire.nom} />
+                    {locataire.Locataire === null 
+                    ? <img src="" alt="" /> 
+                    :  <img className="rounded-full" src={locataire.Locataire.photo} width="40" height="40" alt={locataire.nom} />
+                     }
+                 
                   </TableCell>
                   <TableCell sx={{ py: theme => `${theme.spacing(0.5)} !important` }}>
                   {locataire.nom}  {locataire.prenom}
