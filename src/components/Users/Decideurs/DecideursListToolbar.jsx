@@ -26,7 +26,7 @@ const DecideursListToolbar = (props) => {
     addDecideur(nom,prenom,email,num_tel,mdp).then(({ data }) => {
      
     })
-    .cDecideurh(err => {
+    .catch(err => {
       console.log(err)
     })
   }
@@ -65,7 +65,7 @@ const DecideursListToolbar = (props) => {
           Ajouter un Decideur
         </Button>
         <Dialog open={open} onClose={handleClose}>
-      <DialogTitle>Ajouter un AM</DialogTitle>
+      <DialogTitle>Ajouter un Decideur</DialogTitle>
       <DialogContent sx={{margin:2}}>
         <DialogContentText>
           Remplissez ce formulaire pour ajouter un compte

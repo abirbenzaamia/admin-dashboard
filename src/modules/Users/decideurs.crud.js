@@ -18,7 +18,7 @@ export function addDecideur(nom,prenom,email,num_tel,mdp) {
             "num_tel" : num_tel,
             "mdp" : mdp
     };
-    return axios.post(Services.ADD_Decideur_URL, data)
+    return axios.post(Services.ADD_DECIDEUR_URL, data)
         
 }
 export function modifyInfoDecideur(id,nom,prenom,email,num_tel) {
