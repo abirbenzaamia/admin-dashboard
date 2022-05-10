@@ -1,11 +1,27 @@
 import Sidebar from '../../components/Sidebar/Sidebar';
 import Header from '../../components/Header/Header';
 import WelcomeBanner from '../../components/Dashboard/WelcomeBanner';
-import RequestsTable from '../../components/Dashboard/Tables/RequestsTable'
+import RequestsTable from '../../components/Dashboard/Tables/Requests/RequestsTable'
 import Map from '../../components/Dashboard/Map/Map'
-import React, { useState } from 'react';
+import  { useState , useEffect } from 'react';
+import { getLocataires } from '../../modules/Users/locataires.crud';
 const Dashboard = () => {
     const [sidebarOpen, setSidebarOpen] = useState(false);
+    const [locataires,setLocataires] = useState();
+    useEffect(() => {
+      getLocataires().then(({ data }) => {
+        var acceptedLocataire = [];
+        data.forEach(row => {
+          if (row.Statut.val_statut==="demandé") {
+            acceptedLocataire.push(row);
+          }
+        });
+        setLocataires( acceptedLocataire);
+      })
+      .catch(err => {
+        console.log(err)
+      })
+    }, [])
     return ( 
         <div className="flex h-screen overflow-hidden">
       {/* Sidebar */}
@@ -24,7 +40,7 @@ const Dashboard = () => {
                <Map/> 
             </div>
          
-            <RequestsTable />
+            {locataires && <RequestsTable locatairesList={locataires}/>}
   
       </main>
 
