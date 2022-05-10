@@ -8,8 +8,10 @@ import LocataireProfile from './pages/Profiles/LocataireProfile'
 import Locataires from './pages/UsersLists/LocatairesList/LocatairesList'
 import ATCs from './pages/UsersLists/ATCsList/AtcsList'
 import AMs from './pages/UsersLists/AMsList/AmsList'
+import Decideurs from './pages/UsersLists/DecideursList/DecideursList'
 import ATCProfile from './pages/Profiles/ATCProfile'
 import AMProfile from './pages/Profiles/AMProfile'
+import DecideurProfile from './pages/Profiles/DecideurProfile'
 import MyAccount from './pages/MyAccount/MyAccount'
 
 import { theme } from './theme';
@@ -51,7 +53,12 @@ function App() {
           <AMProfile/> </ThemeProvider>} />
         <Route exact path="/mon_compte" element={  <ThemeProvider theme={theme}>
           <MyAccount/> </ThemeProvider>} />
+          <Route exact path="/Decideurs" element={  <ThemeProvider theme={theme}>
+          <Decideurs/> </ThemeProvider>}/>
+          <Route exact path="/decideur/:id" element={  <ThemeProvider theme={theme}>
+          <DecideurProfile/> </ThemeProvider>} />
         </Routes>
+
       </BrowserRouter> 
     </div>
   );

@@ -8,6 +8,9 @@ export const Services = {
     ADD_ATC_URL: URL_ROOT+'/atc',
     AM_URL: URL_ROOT+'/am/',
     ADD_AM_URL: URL_ROOT+'/am',
+    AUTH_DECIDEUR_URL: URL_ROOT+'/login/decideur',
+    DECIDEUR_URL: URL_ROOT+'/decideur/',
+    ADD_DECIDEUR_URL: URL_ROOT+'/decideur',
 
 }
 
