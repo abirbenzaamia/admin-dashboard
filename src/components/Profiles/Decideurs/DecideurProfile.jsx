@@ -9,25 +9,13 @@ import {
     Typography
   } from '@mui/material';
   import { useState , useEffect } from 'react';
-import {getLocataireInfo} from '../../../modules/Users/locataires.crud'
+//import {getDecideurInfo} from '../../../modules/Users/Decideurs.crud'
   
- const UserProfile = (props) => {
-  const [user, setUser] = useState([]);
-  
-  console.log(props.id);
-  useEffect(() => {
-    getLocataireInfo(props.id).then(({ data }) => {
-      setUser(data.user);
-      console.log(data.user);
+ const DecideurProfile = ({user}) => {
+  //const [user, setUser] = useState(props.user);
 
-
-    })
-    .catch(err => {
-      console.log(err)
-    })
-  }, [props.id])
   return (
-    <Card>
+    <Card >
     <CardContent>
       <Box
         sx={{
@@ -49,29 +37,36 @@ import {getLocataireInfo} from '../../../modules/Users/locataires.crud'
           gutterBottom
           variant="h5"
         >
-          {user.name}
+          {`${user.nom} ${user.prenom}`}
         </Typography>
         <Typography
           color="textSecondary"
           variant="body2"
         >
-         
+          {user.type_utilisateur}
+          
         </Typography>
         <Typography
           color="textSecondary"
           variant="body2"
         >
-          {user.timezone}
+          {user.createdAt}
         </Typography>
       </Box>
     </CardContent>
     <Divider />
     <CardActions>
-     
+      <Button
+        color="primary"
+        fullWidth
+        variant="text"
+      >
+        Télécharger une photo
+      </Button>
     </CardActions>
   </Card>
    );
  }
  
    
-  export default UserProfile;
+  export default DecideurProfile;

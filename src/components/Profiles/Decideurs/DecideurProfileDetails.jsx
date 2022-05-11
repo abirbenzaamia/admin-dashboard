@@ -1,5 +1,5 @@
 import { useState , useEffect } from 'react';
-import {getATCInfo} from '../../../modules/Users/atcs.crud'
+import {getDecideurInfo} from '../../../modules/Users/decideurs.crud'
 
 
 
@@ -13,10 +13,10 @@ import {
   Grid
 } from '@mui/material';
 import TextField from '@mui/material/TextField';
-import {modifyInfoAM} from '../../../modules/Users/ams.crud'
+import {modifyInfoDecideur} from '../../../modules/Users/decideurs.crud'
 
 
-const AMProfileDetails = ({user}) => {
+const DecideurProfileDetails = ({user}) => {
   console.log(user);
   const [id,setId] = useState(user.id);
   const [nom, setNom] = useState(user.nom);
@@ -25,7 +25,7 @@ const AMProfileDetails = ({user}) => {
   const [num_tel, setNumtel] = useState(user.num_tel);
   
   const handleSubmit = () => {
-    modifyInfoAM(id,nom,prenom,email,num_tel).then(({ data }) => {
+    modifyInfoDecideur(id,nom,prenom,email,num_tel).then(({ data }) => {
       window.location.reload(false);
      console.log(data)
     })
@@ -131,4 +131,4 @@ const AMProfileDetails = ({user}) => {
 };
 
 
-export default AMProfileDetails;
+export default DecideurProfileDetails;

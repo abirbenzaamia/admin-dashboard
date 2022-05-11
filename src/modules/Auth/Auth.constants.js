@@ -8,4 +8,5 @@ export const actionTypes = {
 }
 export const authUrls = {
   LOGIN_ATC_URL: Services.AUTH_ATC_URL,
+  LOGIN_DECIDEUR_URL: Services.AUTH_DECIDEUR_URL,
 };

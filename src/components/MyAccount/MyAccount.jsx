@@ -1,3 +1,4 @@
+import { useState} from 'react';
 import {
     Avatar,
     Box,
@@ -8,26 +9,19 @@ import {
     Divider,
     Typography
   } from '@mui/material';
-  import { useState , useEffect } from 'react';
-import {getLocataireInfo} from '../../../modules/Users/locataires.crud'
   
- const UserProfile = (props) => {
-  const [user, setUser] = useState([]);
+
   
-  console.log(props.id);
-  useEffect(() => {
-    getLocataireInfo(props.id).then(({ data }) => {
-      setUser(data.user);
-      console.log(data.user);
+ const MyAccount = (props) => {
+  const [user, setUser] = useState(() => {
+    // getting stored value
+    const saved = localStorage.getItem("user");
+    const user = JSON.parse(saved);
+    return user;
+  });
 
-
-    })
-    .catch(err => {
-      console.log(err)
-    })
-  }, [props.id])
   return (
-    <Card>
+    <Card {...props}>
     <CardContent>
       <Box
         sx={{
@@ -49,29 +43,36 @@ import {getLocataireInfo} from '../../../modules/Users/locataires.crud'
           gutterBottom
           variant="h5"
         >
-          {user.name}
+          {`${user.nom} ${user.prenom}`}
         </Typography>
         <Typography
           color="textSecondary"
           variant="body2"
         >
-         
+          {user.type_utilisateur}
+          
         </Typography>
         <Typography
           color="textSecondary"
           variant="body2"
         >
-          {user.timezone}
+          {user.createdAt}
         </Typography>
       </Box>
     </CardContent>
     <Divider />
     <CardActions>
-     
+      <Button
+        color="primary"
+        fullWidth
+        variant="text"
+      >
+        Upload picture
+      </Button>
     </CardActions>
   </Card>
    );
  }
  
    
-  export default UserProfile;
+  export default MyAccount;

@@ -1,9 +1,9 @@
 import Sidebar from '../../components/Sidebar/Sidebar';
 import Header from '../../components/Header/Header';
-import  { useState , useEffect } from 'react';
-import AMProfileDetails from "../../components/Profiles/AMs/AMProfileDetails";
-import AMProfile from '../../components/Profiles/AMs/AMProfile'
-import {getAMInfo} from '../../modules/Users/ams.crud'
+import React, { useState , useEffect } from 'react';
+import DecideurProfileDetails from "../../components/Profiles/Decideurs/DecideurProfileDetails";
+import DecideurProfile from '../../components/Profiles/Decideurs/DecideurProfile'
+import {getDecideurInfo} from '../../modules/Users/decideurs.crud'
 
 import {
   Box,
@@ -16,7 +16,7 @@ const UserProfil = (props) => {
   const {id} = useParams();
   const [user, setUser] = useState();
   useEffect(() => {
-    getAMInfo(id).then(({ data }) => {
+    getDecideurInfo(id).then(({ data }) => {
       setUser(data.user);
       console.log(data.user);
 
@@ -26,6 +26,7 @@ const UserProfil = (props) => {
     })
   }, [id])
     const [sidebarOpen, setSidebarOpen] = useState(true);
+    
     return ( 
         <div className="flex h-screen overflow-hidden">
       {/* Sidebar */}
@@ -58,7 +59,8 @@ const UserProfil = (props) => {
             md={6}
             xs={12}
           >
-            {user && <AMProfile user={user}  />} 
+            {user && <DecideurProfile user={user}  />}
+ 
           </Grid>
           <Grid
             item
@@ -66,7 +68,8 @@ const UserProfil = (props) => {
             md={6}
             xs={12}
           >
-            {user && <AMProfileDetails user={user} />}
+             {user && <DecideurProfileDetails user={user} />}
+            
           </Grid>
         </Grid>
       </Container>

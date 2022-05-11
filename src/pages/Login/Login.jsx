@@ -19,35 +19,36 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import EyeOutline from 'mdi-material-ui/EyeOutline'
 import EyeOffOutline from 'mdi-material-ui/EyeOffOutline'
 import Animation from '../../assets/illusrations/animated/login_illustration.json'
-
+import {loginATC} from '../../modules/Auth/Auth.crud'
 const theme = createTheme();
-async function loginATC(credentials) {
-  console.log(JSON.stringify(credentials));
- return fetch('https://wyerkn74ia.execute-api.eu-west-3.amazonaws.com/login/atc', {
-   method: 'POST',
-   headers: {
-    'Access-Control-Allow-Origin': true,
-     'Content-Type': 'application/json'
-   },
-   body: JSON.stringify(credentials)
- })
-   .then(data => data.json());
-}
+// async function loginATC(credentials) {
+//   console.log(JSON.stringify(credentials));
+//  return fetch('https://wyerkn74ia.execute-api.eu-west-3.amazonaws.com/login/atc', {
+//    method: 'POST',
+//    headers: {
+//     'Access-Control-Allow-Origin': true,
+//      'Content-Type': 'application/json'
+//    },
+//    body: JSON.stringify(credentials)
+//  })
+//    .then(data => data.json());
+// }
 export default function Login() {
    //const classes = useStyles();
    const [email, setEmail] = useState();
    const [mdp, setMdp] = useState();
+   //const [id, setId] = useState();
  
    const handleSubmit = async e => {
      e.preventDefault();
-     const response = await loginATC({
+     const response = await loginATC(
        email,
        mdp
-     });
+     );
      console.log(response);
-      if ('user' in response) {
-          localStorage.setItem('accessToken', response['accessToken']);
-          localStorage.setItem('user', JSON.stringify(response['user']));
+      if ('user' in response.data) {
+          localStorage.setItem('accessToken', response.headers.authorization);
+          localStorage.setItem('user', JSON.stringify(response.data['user']));
           window.location.href = "/dashboard";
       } else {
         console.log(response.message);

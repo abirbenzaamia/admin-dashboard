@@ -13,9 +13,9 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
   import { useState} from 'react';
-  import {addATC} from '../../../modules/Users/atcs.crud'
+  import {addDecideur} from '../../../modules/Users/decideurs.crud'
   
-const ATCsListToolbar = (props) => {
+const DecideursListToolbar = (props) => {
   const [open, setOpen] = useState(false);
   const [nom, setNom] = useState();
   const [prenom, setPrenom] = useState();
@@ -23,7 +23,7 @@ const ATCsListToolbar = (props) => {
   const [num_tel, setNumtel] = useState();
   const [mdp, setMdp] = useState();
   const handleSubmit = () => {
-    addATC(nom,prenom,email,num_tel,mdp).then(({ data }) => {
+    addDecideur(nom,prenom,email,num_tel,mdp).then(({ data }) => {
      
     })
     .catch(err => {
@@ -52,7 +52,7 @@ const ATCsListToolbar = (props) => {
         sx={{ m: 1 }}
         variant="h4"
       >
-        Listes des ATC
+        Listes des Decideur
       </Typography>
       <Box sx={{ m: 1 }}>
      
@@ -62,10 +62,10 @@ const ATCsListToolbar = (props) => {
           variant="contained"
           onClick={handleClickOpen}
         >
-          Ajouter un ATC
+          Ajouter un Decideur
         </Button>
         <Dialog open={open} onClose={handleClose}>
-      <DialogTitle>Ajouter un AM</DialogTitle>
+      <DialogTitle>Ajouter un Decideur</DialogTitle>
       <DialogContent sx={{margin:2}}>
         <DialogContentText>
           Remplissez ce formulaire pour ajouter un compte
@@ -160,4 +160,4 @@ const ATCsListToolbar = (props) => {
    
   };
   
-  export default ATCsListToolbar;
+  export default DecideursListToolbar;

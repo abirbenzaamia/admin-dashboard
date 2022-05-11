@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { DataGrid } from '@mui/x-data-grid';
 import { useState, useEffect } from 'react';
-import {getAMs} from '../../../modules/Users/ams.crud'
+import {getDecideurs} from '../../../modules/Users/decideurs.crud'
 import Button from '@mui/material/Button';
 import { Link } from 'react-router-dom';
 
@@ -31,7 +31,7 @@ const columns = [
     headerName: 'Actions',
     width: 150,
     renderCell: (params) => (
-      <Link to={`/am/${params.id}`} underline="none" >
+      <Link to={`/Decideur/${params.id}`} underline="none" >
       <Button
            variant="contained"
            color="primary"
@@ -50,10 +50,10 @@ const columns = [
 
 export default function DataTable() {
   const [pageSize, setPageSize] = React.useState(5);
-  const [ams, setAMs] = useState([]);
+  const [Decideurs, setDecideurs] = useState([]);
   useEffect(() => {
-    getAMs().then(({ data }) => {
-      setAMs(data);
+    getDecideurs().then(({ data }) => {
+      setDecideurs(data);
     })
     .catch(err => {
       console.log(err)
@@ -62,7 +62,7 @@ export default function DataTable() {
   return (
     <div style={{ height: 400, width: '100%' }}>
       <DataGrid
-        rows={ams}
+        rows={Decideurs}
         columns={columns}
         pageSize={pageSize}
         onPageSizeChange={(newPageSize) => setPageSize(newPageSize)}

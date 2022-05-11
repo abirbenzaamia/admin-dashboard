@@ -1,8 +1,4 @@
 import { useState , useEffect } from 'react';
-import {getATCInfo} from '../../../modules/Users/atcs.crud'
-
-
-
 import {
   Box,
   Button,
@@ -13,19 +9,21 @@ import {
   Grid
 } from '@mui/material';
 import TextField from '@mui/material/TextField';
-import {modifyInfoAM} from '../../../modules/Users/ams.crud'
+import {modifyInfoATC} from '../../modules/Users/atcs.crud'
+
+const MyAccountDetails = () => {
+  const [user, setUser] = useState(() => {
+    // getting stored value
+    const saved = localStorage.getItem("user");
+    const user = JSON.parse(saved);
+    return user;
+  });
 
 
-const AMProfileDetails = ({user}) => {
-  console.log(user);
-  const [id,setId] = useState(user.id);
-  const [nom, setNom] = useState(user.nom);
-  const [prenom, setPrenom] = useState(user.prenom);
-  const [email, setEmail] = useState(user.email);
-  const [num_tel, setNumtel] = useState(user.num_tel);
-  
+
   const handleSubmit = () => {
-    modifyInfoAM(id,nom,prenom,email,num_tel).then(({ data }) => {
+    modifyInfoATC(user.id,user.nom,user.prenom,user.email,user.num_tel).then(({ data }) => {
+      localStorage.setItem('user', JSON.stringify(data['user']));
       window.location.reload(false);
      console.log(data)
     })
@@ -33,10 +31,18 @@ const AMProfileDetails = ({user}) => {
       console.log(err)
     })
   }
-   return (
+  const handleChange = (event) => {
+    setUser({
+      ...user,
+      [event.target.name]: event.target.value
+    });
+  };
+  return (
     <form
     autoComplete="off"
     noValidate
+
+
   >
     <Card>
       <CardHeader
@@ -56,11 +62,12 @@ const AMProfileDetails = ({user}) => {
           >
             <TextField
               fullWidth
+              helperText="Please specify the first name"
               label="Nom"
               name="nom"
-              value={nom}
+              value={user.nom}
               variant="outlined"
-              onChange={e => setNom(e.target.value)}
+              onChange={handleChange}
             />
           </Grid>
           <Grid
@@ -72,8 +79,8 @@ const AMProfileDetails = ({user}) => {
               fullWidth
               label="Prénom"
               name="prenom"
-              onChange={e => setPrenom(e.target.value)}
-              value={prenom}
+              onChange={handleChange}
+              value={user.prenom}
               variant="outlined"
             />
           </Grid>
@@ -86,8 +93,8 @@ const AMProfileDetails = ({user}) => {
               fullWidth
               label="Adresse email"
               name="email"
-              onChange={e => setEmail(e.target.value)}
-              value={email}
+              onChange={handleChange}
+              value={user.email}
               variant="outlined"
             />
           </Grid>
@@ -100,9 +107,9 @@ const AMProfileDetails = ({user}) => {
               fullWidth
               label="Numéro de téléphone"
               name="num_tel"
-              onChange={e => setNumtel(e.target.value)}
+              onChange={handleChange}
               type="number"
-              value={num_tel}
+              value={user.num_tel}
               variant="outlined"
             />
           </Grid>
@@ -131,4 +138,4 @@ const AMProfileDetails = ({user}) => {
 };
 
 
-export default AMProfileDetails;
+export default MyAccountDetails;
