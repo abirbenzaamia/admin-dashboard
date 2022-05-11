@@ -48,6 +48,7 @@ export default function Login() {
      console.log(response);
       if ('user' in response.data) {
           localStorage.setItem('accessToken', response.headers.authorization);
+          localStorage.setItem('connected', true);
           localStorage.setItem('user', JSON.stringify(response.data['user']));
           window.location.href = "/dashboard";
       } else {

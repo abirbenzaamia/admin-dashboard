@@ -12,13 +12,8 @@ const Dashboard = () => {
     const [sidebarOpen, setSidebarOpen] = useState(false);
     
     return ( 
-        <div className="flex h-screen overflow-hidden">
-      {/* Sidebar */}
-      <Sidebar sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} />
-
-      {/* Content area */}
+  
       <div className="relative flex flex-col flex-1 overflow-y-auto overflow-x-hidden">
-      <Header sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} />
       <main>
       <Box
       component="main"
@@ -39,7 +34,7 @@ const Dashboard = () => {
       </main>
 
       </div>
-    </div>
+
      );
 }
  
