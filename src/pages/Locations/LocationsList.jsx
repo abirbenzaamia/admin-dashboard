@@ -8,6 +8,7 @@ import { useState,useEffect } from 'react';
 import { getLocations } from '../../modules/Vehicles/locations.crud';
 
  const LocationsList = () => {
+  const [sidebarOpen, setSidebarOpen] = useState(false);
    const [locations, setLocations] = useState([]);
    useEffect(() => {
      getLocations().then(({ data }) => {
@@ -19,6 +20,13 @@ import { getLocations } from '../../modules/Vehicles/locations.crud';
    }, [])
   console.log(locations);
   return (
+    <div className="flex h-screen overflow-hidden">
+    {/* Sidebar */}
+    <Sidebar sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} />
+
+    {/* Content area */}
+    <div className="relative flex flex-col flex-1 overflow-y-auto overflow-x-hidden">
+    <Header sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} />
     <div className="relative flex flex-col flex-1 overflow-y-auto overflow-x-hidden">
     <main>
    
@@ -68,6 +76,8 @@ import { getLocations } from '../../modules/Vehicles/locations.crud';
     </main>
 
     </div>
+    </div>
+      </div>
   )
 }
   

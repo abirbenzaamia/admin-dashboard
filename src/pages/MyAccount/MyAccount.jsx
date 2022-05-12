@@ -13,9 +13,16 @@ import {
 import { useParams } from 'react-router-dom';
 const MyProfile = (props) => {
   const {id} = useParams();
-    const [sidebarOpen, setSidebarOpen] = useState(true);
+    const [sidebarOpen, setSidebarOpen] = useState(false);
     return ( 
       
+      <div className="flex h-screen overflow-hidden">
+      {/* Sidebar */}
+      <Sidebar sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} />
+  
+      {/* Content area */}
+      <div className="relative flex flex-col flex-1 overflow-y-auto overflow-x-hidden">
+      <Header sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} />
       <div className="relative flex flex-col flex-1 overflow-y-auto overflow-x-hidden">
       <main>
       <Box
@@ -58,6 +65,8 @@ const MyProfile = (props) => {
   
       </main>
 
+      </div>
+      </div>
       </div>
      );
 }
