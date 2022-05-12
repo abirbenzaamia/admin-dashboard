@@ -13,7 +13,7 @@ import ATCProfile from './pages/Profiles/ATCProfile'
 import AMProfile from './pages/Profiles/AMProfile'
 import DecideurProfile from './pages/Profiles/DecideurProfile'
 import MyAccount from './pages/MyAccount/MyAccount'
-import ReservationsList from './pages/Reservations/ReservationsList'
+import LocationsList from './pages/Locations/LocationsList'
 import Header from './components/Header/Header';
 import Sidebar from './components/Sidebar/Sidebar';
 import { theme } from './theme';
@@ -73,7 +73,7 @@ function App() {
            <Route exact path="/decideur/:id" element={  <ThemeProvider theme={theme}>
            <DecideurProfile/> </ThemeProvider>} />
            <Route exact path="/reservations" element={  <ThemeProvider theme={theme}>
-           <ReservationsList/> </ThemeProvider>} />
+           <LocationsList/> </ThemeProvider>} />
          </Routes>
      </main>
  

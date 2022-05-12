@@ -1,14 +1,24 @@
 
 import { Box, Container, Grid, Pagination } from '@mui/material';
-import { products } from './products';
-import { ReservationListToolbar } from '../../components/Reservations/ReservationListToolbar';
-import { ReservationCard } from '../../components/Reservations/ReservationCard';
+import { locations } from './locations';
+import { LocationsListToolbar } from '../../components/Locations/LocationsListToolbar';
+import { LocationCard } from '../../components/Locations/LocationCard';
 import Header from '../../components/Header/Header';
 import Sidebar from '../../components/Sidebar/Sidebar';
-import { useState } from 'react';
+import { useState,useEffect } from 'react';
+import { getLocations } from '../../modules/Vehicles/locations.crud';
 
-const ReservationsList = () => {
-  const [sidebarOpen, setSidebarOpen] = useState(false);
+ const LocationsList = () => {
+//   const [locations, setLocations] = useState([]);
+//   useEffect(() => {
+//     getLocations().then(({ data }) => {
+//       setLocations(data);
+//     })
+//     .catch(err => {
+//       console.log(err)
+//     })
+//   }, [])
+  console.log(locations);
   return (
     <div className="relative flex flex-col flex-1 overflow-y-auto overflow-x-hidden">
     <main>
@@ -21,21 +31,22 @@ const ReservationsList = () => {
       }}
     >
       <Container maxWidth={false}>
-        <ReservationListToolbar />
+        <LocationsListToolbar />
         <Box sx={{ pt: 3 }}>
           <Grid
             container
             spacing={3}
           >
-            {products.map((product) => (
+            {locations.map((location) => (
               <Grid
                 item
-                key={product.id}
+                key={location.idLocation}
                 lg={4}
                 md={6}
                 xs={12}
               >
-                <ReservationCard product={product} />
+                {console.log(location.dateLocation)}
+                {location && <LocationCard location={location} />}
               </Grid>
             ))}
           </Grid>
@@ -65,4 +76,4 @@ const ReservationsList = () => {
 
 
 
-export default ReservationsList;
+export default LocationsList;
