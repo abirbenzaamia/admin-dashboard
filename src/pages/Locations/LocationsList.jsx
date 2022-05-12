@@ -1,6 +1,5 @@
 
 import { Box, Container, Grid, Pagination } from '@mui/material';
-import { locations } from './locations';
 import { LocationsListToolbar } from '../../components/Locations/LocationsListToolbar';
 import { LocationCard } from '../../components/Locations/LocationCard';
 import Header from '../../components/Header/Header';
@@ -9,15 +8,15 @@ import { useState,useEffect } from 'react';
 import { getLocations } from '../../modules/Vehicles/locations.crud';
 
  const LocationsList = () => {
-//   const [locations, setLocations] = useState([]);
-//   useEffect(() => {
-//     getLocations().then(({ data }) => {
-//       setLocations(data);
-//     })
-//     .catch(err => {
-//       console.log(err)
-//     })
-//   }, [])
+   const [locations, setLocations] = useState([]);
+   useEffect(() => {
+     getLocations().then(({ data }) => {
+       setLocations(data);
+     })
+     .catch(err => {
+       console.log(err)
+     })
+   }, [])
   console.log(locations);
   return (
     <div className="relative flex flex-col flex-1 overflow-y-auto overflow-x-hidden">

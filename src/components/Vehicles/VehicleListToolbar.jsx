@@ -25,7 +25,7 @@ import {
           sx={{ m: 1 }}
           variant="h4"
         >
-          Products
+          Listes des véhicules
         </Typography>
         <Box sx={{ m: 1 }}>
           <Button

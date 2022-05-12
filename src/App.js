@@ -18,6 +18,7 @@ import Header from './components/Header/Header';
 import Sidebar from './components/Sidebar/Sidebar';
 import { theme } from './theme';
 import { ThemeProvider } from '@mui/material/styles';
+import VehiculesList from './pages/Vehicles/VehiclesList'
 
 
 function App() {
@@ -74,6 +75,8 @@ function App() {
            <DecideurProfile/> </ThemeProvider>} />
            <Route exact path="/reservations" element={  <ThemeProvider theme={theme}>
            <LocationsList/> </ThemeProvider>} />
+           <Route exact path="/vehicules" element={  <ThemeProvider theme={theme}>
+           <VehiculesList/> </ThemeProvider>} />
          </Routes>
      </main>
  

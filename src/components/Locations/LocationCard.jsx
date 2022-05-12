@@ -5,6 +5,7 @@ import Alert from '@mui/material/Alert';
 import CheckIcon from '@mui/icons-material/Check';
 import LocationMap from './LocationMap';
 import { getLocataireInfo } from '../../modules/Users/locataires.crud';
+import { Link } from 'react-router-dom';
 import { useState,useEffect } from 'react';
 export const LocationCard = ({location}) => {
 
@@ -31,7 +32,7 @@ const [user,setUser] = useState()
 
     
     <Grid sx={{m:3,mb:0}}>
-    <Grid container spacing={2}>
+    <Grid container >
   <Grid item sx={{ m:2,mr:1,p: 0}}>
   {location.terminee === true
     ?<Alert icon={<CheckIcon fontSize="inherit" />} severity="success">
@@ -51,7 +52,7 @@ const [user,setUser] = useState()
     
     <CardContent>   
         
-      <Grid item  container spacing={2}>
+      <Grid item  container >
   <Grid sx={{ m:2,mr:1,p: 0}}>
   <Typography 
       color="textPrimary"
@@ -70,7 +71,7 @@ const [user,setUser] = useState()
     </Typography>
 </Grid>
 </Grid>
-<Grid item  container spacing={2}>
+<Grid item  container >
   <Grid sx={{ m:2,mr:1,p: 0}}>
   <Typography 
       color="textPrimary"
@@ -98,7 +99,7 @@ const [user,setUser] = useState()
     <Box sx={{ p: 2 }}>
       <Grid
         container
-        spacing={2}
+        
         sx={{ justifyContent: 'space-between' }}
       >
         <Grid
@@ -132,7 +133,7 @@ const [user,setUser] = useState()
             sx={{ pl: 1 }}
             variant="body2"
           >
-           Effectueée par : {user.nom+' '+user.prenom}
+           Effectuée par : {user.nom+' '+user.prenom}
           </Typography> }
         </Grid>
         <Grid
@@ -161,10 +162,11 @@ const [user,setUser] = useState()
             
           }}
         >
-         <Grid spacing={20}>
+         <Grid>
 
          </Grid>
-          <Button  sx={{color:'#4361EE'}}>Voir Locataire</Button>
+         <Link to={`/locataire/${location.locataire.locataireId}`} underline="none" ><Button  sx={{color:'#4361EE'}}> Voir Locataire</Button></Link>
+          
           <Button  sx={{color:'#4361EE'}}>Voir Vehicule</Button>
         </Grid>
       </Grid>
