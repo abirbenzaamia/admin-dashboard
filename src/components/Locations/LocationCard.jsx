@@ -7,9 +7,12 @@ import LocationMap from './LocationMap';
 import { getLocataireInfo } from '../../modules/Users/locataires.crud';
 import { Link } from 'react-router-dom';
 import { useState,useEffect } from 'react';
+import Geocode from "react-geocode"; 
+
 export const LocationCard = ({location}) => {
 
 const [user,setUser] = useState()
+
   useEffect(() => {
     getLocataireInfo(location.locataire.locataireId).then(({ data }) => {
       setUser(data.user);
@@ -63,12 +66,16 @@ const [user,setUser] = useState()
     </Typography>
   </Grid>
   <Grid  sx={{ m:2,ml:0,p: 0}}>
-  <Typography
+    
+       <Typography
       color="textPrimary"
       variant="body1"
     >
-   jjjj
+     
+      Q67P+VF3, Bordj El Kiffan, Algérie
     </Typography>
+    
+ 
 </Grid>
 </Grid>
 <Grid item  container >
@@ -86,7 +93,7 @@ const [user,setUser] = useState()
       color="textPrimary"
       variant="body1"
     >
-   jjjj
+   67P+VF3, Bordj El Kiffan, Algérie
     </Typography>
 </Grid>
 </Grid>
@@ -171,7 +178,7 @@ const [user,setUser] = useState()
         </Grid>
       </Grid>
     </Box>
-    {/* <LocationMap latDep={location.latitudeDepart} longDep={location.longitudeDepart} latArv={location.latitudeArrivee} longArv={location.longitudeArrivee}/> */}
+      <LocationMap latDep={location.latitudeDepart} longDep={location.longitudeDepart} latArv={location.latitudeArrivee} longArv={location.longitudeArrivee}/>  
   </Card>
   )
 }

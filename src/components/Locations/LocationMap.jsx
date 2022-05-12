@@ -1,41 +1,58 @@
+
+
 import React, { useState, useEffect } from "react";
-import { GoogleMap, LoadScript ,Marker,InfoWindow,Polyline,StandaloneSearchBox} from '@react-google-maps/api';
+import { GoogleMap, LoadScript ,Marker,Polyline} from '@react-google-maps/api';
+import Geocode from "react-geocode"; 
 import socketIOClient from "socket.io-client";
 const ENDPOINT = "https://autorun-geopositioning.herokuapp.com/";
+function MyComponent({latDep,longDep,latArv,longArv}) {
+  Geocode.setApiKey("AIzaSyCNdS-eHQeAsWyQ6xIEwROKmkgaA7zm6a4");
 
-
-
-
-
-
-
-function LocationMap({latDep,longDep,latArv,longArv}) {
-    const dep = {
-        lat:latDep ,
-         lng: longDep 
-      };
-      const arv = {
-        lat: latArv,
-         lng: longArv 
-      };
-  const [response, setResponse] = useState("");
-              //   latitude: "36.7159"
-              //  ,longitude: "3.1536"
-  useEffect(() => {
-    const socket = socketIOClient(ENDPOINT);
-    socket.emit("position_update")
-    socket.on("position_update", data => {
-      setResponse(data);
-    });
-  }, []);
+// set response language. Defaults to english.
+Geocode.setLanguage("fr");
+  //getReverseGeocodingData(36.7216959, 3.1854900 ) 
+  console.log(longDep);
+  Geocode.fromLatLng(longDep, latDep).then(
+    (response) => {
+      const address = response.results[0].formatted_address;
+      console.log(address);
+    },
+    (error) => {
+      console.error(error);
+    }
+  );
+  Geocode.fromLatLng("36.764638", "3.236066").then(
+    (response) => {
+      const address = response.results[0].formatted_address;
+      console.log(address);
+    },
+    (error) => {
+      console.error(error);
+    }
+  );
   
-
-  
-  const center = {
-    lat: parseFloat(response.latitude),
-    lng: parseFloat(response.longitude)
+  const depart = {
+    lat: latDep,
+     lng:  longDep
   };
+  const Arrivee = {
+    lat: latArv,
+     lng:  longArv
+  };
+   
+  const [current, setCurrent] = useState(Arrivee);
+  const pathCoordinates = [
+   depart,
+   current
+  ];  
 
+  const [response, setResponse] = useState("");
+            
+  
+  
+  
+  
+ 
 const containerStyle = {
   width: '500px',
   height: '500px' } 
@@ -44,15 +61,14 @@ const containerStyle = {
     <LoadScript  googleMapsApiKey="AIzaSyCNdS-eHQeAsWyQ6xIEwROKmkgaA7zm6a4">
       <GoogleMap
         mapContainerStyle={containerStyle}
-        center={center}
+        center={depart}
         zoom={17}
       >
-       
-       <Marker position= {dep}/>
-       <Marker position= {arv}/>
-    
-                         
-          <Polyline path={[{ lat: 36.7206251, lng: 4.1854975  }, { lat: 36.7216959, lng: 4.1854900  }]}
+         
+       <Marker position= {depart}/>
+       <Marker position= {current}/>
+      
+          <Polyline path={ pathCoordinates}
          options={{
           strokeColor: "#ff2527",
           strokeOpacity: 0.75,
@@ -64,4 +80,4 @@ const containerStyle = {
   );
 }
 
-export default LocationMap;
+export default MyComponent
