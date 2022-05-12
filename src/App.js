@@ -28,29 +28,26 @@ function App() {
   //   return <Login setToken={setToken} />
   // }
    
-  const [connected, setConnected] = useState( localStorage.getItem("connected"));
+  const [connected, setConnected] = useState( false);
+  //setConnected(localStorage.getItem("connected")
   const [sidebarOpen, setSidebarOpen] = useState(false);
-  if (connected === 'true'){
     return (
       <div className="wrapper">
       
       <BrowserRouter>
       <div className="flex h-screen overflow-hidden">
      {/* Sidebar */}
-     <Sidebar sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} />
  
      {/* Content area */}
      <div className="relative flex flex-col flex-1 overflow-y-auto overflow-x-hidden">
-     <Header sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} />
+   
      <main>
     
      <Routes>
-           {
-          connected === 'true'
-          ? <Route path="" element={<Navigate to="/dashboard" />} />
-          : <Route path="" element={<Navigate to="/login" />} />
-           }
         
+          
+           <Route path="" element={<Navigate to="/login" />} />
+           
          <Route exact path="/login" element={ <ThemeProvider theme={theme}>
             <Login/> </ThemeProvider>} />
          <Route exact path="/dashboard"  element={  <ThemeProvider theme={theme}>
@@ -86,11 +83,7 @@ function App() {
        </BrowserRouter> 
      </div>
    );
-  }else{
-<div className="wrapper">
   
-</div>
-  }
   
 }
 

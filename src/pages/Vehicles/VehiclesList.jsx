@@ -4,7 +4,8 @@ import { VehicleListToolbar } from '../../components/Vehicles/VehicleListToolbar
 import { VehicleCard } from '../../components/Vehicles/VehicleCard';
 import { useState,useEffect } from 'react';
 import { getVehicules} from '../../modules/Vehicles/vehicles.crud'
-
+import Sidebar from '../../components/Sidebar/Sidebar';
+import Header from '../../components/Header/Header';
 const VehiclesList = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
     const [vehicules, setVehicules] = useState([]);
@@ -18,6 +19,13 @@ const VehiclesList = () => {
    }, [])
   return (
     
+    <div className="flex h-screen overflow-hidden">
+    {/* Sidebar */}
+    <Sidebar sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} />
+
+    {/* Content area */}
+    <div className="relative flex flex-col flex-1 overflow-y-auto overflow-x-hidden">
+    <Header sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} />
     <div className="relative flex flex-col flex-1 overflow-y-auto overflow-x-hidden">
     <main>
    
@@ -65,6 +73,8 @@ const VehiclesList = () => {
     </Box>
     </main>
 
+    </div>
+    </div>
     </div>
   )
 }
