@@ -10,7 +10,7 @@ import {
   } from '@mui/material';
 
   
-  export const ReservationListToolbar = (props) => (
+  export const LocationsListToolbar = (props) => (
     <Box {...props}>
       <Box
         sx={{

@@ -1,5 +1,6 @@
 import axios from 'axios';
 const URL_ROOT="https://wyerkn74ia.execute-api.eu-west-3.amazonaws.com";
+const URL_ROOT1 = "https://autorun-crud.herokuapp.com"
 
 export const Services = {
     AUTH_ATC_URL: URL_ROOT+'/login/atc',
@@ -11,6 +12,8 @@ export const Services = {
     AUTH_DECIDEUR_URL: URL_ROOT+'/login/decideur',
     DECIDEUR_URL: URL_ROOT+'/decideur/',
     ADD_DECIDEUR_URL: URL_ROOT+'/decideur',
+    VEHICLE_URL:URL_ROOT1+'/vehicule',
+    LOCATION_URL:URL_ROOT1+'/location'
 
 }
 

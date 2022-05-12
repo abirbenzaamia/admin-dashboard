@@ -1,13 +1,21 @@
 
 import { Box, Container, Grid, Pagination } from '@mui/material';
-import { products } from './products';
 import { VehicleListToolbar } from '../../components/Vehicles/VehicleListToolbar';
 import { VehicleCard } from '../../components/Vehicles/VehicleCard';
-import Header from '../../components/Header/Header';
-import Sidebar from '../../components/Sidebar/Sidebar';
-import { useState } from 'react';
+import { useState,useEffect } from 'react';
+import { getVehicules} from '../../modules/Vehicles/vehicles.crud'
+
 const VehiclesList = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
+    const [vehicules, setVehicules] = useState([]);
+   useEffect(() => {
+     getVehicules().then(({ data }) => {
+       setVehicules(data);
+     })
+     .catch(err => {
+       console.log(err)
+     })
+   }, [])
   return (
     
     <div className="relative flex flex-col flex-1 overflow-y-auto overflow-x-hidden">
@@ -27,15 +35,15 @@ const VehiclesList = () => {
             container
             spacing={3}
           >
-            {products.map((product) => (
+            {vehicules.map((vehicule) => (
               <Grid
                 item
-                key={product.id}
+                key={vehicule.idVehicule}
                 lg={4}
                 md={6}
                 xs={12}
               >
-                <VehicleCard product={product} />
+                {vehicule && <VehicleCard vehicule={vehicule} />}
               </Grid>
             ))}
           </Grid>

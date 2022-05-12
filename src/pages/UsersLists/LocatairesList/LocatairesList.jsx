@@ -9,7 +9,6 @@ Container
 } from '@mui/material';
 const Dashboard = () => {
     
-    const [sidebarOpen, setSidebarOpen] = useState(false);
     
     return ( 
      
