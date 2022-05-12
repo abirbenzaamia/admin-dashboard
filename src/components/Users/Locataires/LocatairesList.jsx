@@ -5,7 +5,7 @@ import {getLocataires} from '../../../modules/Users/locataires.crud'
 import Button from '@mui/material/Button';
 // import Link from '@mui/material/Link';
 import { Link } from 'react-router-dom';
-
+import Avatar from '@mui/material/Avatar';
 
 
 
@@ -16,8 +16,9 @@ const columns = [
     headerName: 'Photo',
     width: 130,
     renderCell: (params) => (
- 
-      <img className="rounded-full" src={params.value.photo} width="40" height="40" alt={params.row.nom} />
+      
+   
+      <Avatar src={params.value.photo} width="40" height="40" alt={params.row.nom} />
 
     ),
     sortable: false,
@@ -38,11 +39,12 @@ const columns = [
     sortable: false,
   },
   {
-    field: '',
+    field: 'actions',
     headerName: 'Actions',
     width: 150,
     renderCell: (params) => (
-    
+      console.log(params.id),
+
 <Link to={`/locataire/${params.id}`} underline="none" >
 <Button
      variant="contained"

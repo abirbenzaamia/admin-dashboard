@@ -15,12 +15,8 @@ const MyProfile = (props) => {
   const {id} = useParams();
     const [sidebarOpen, setSidebarOpen] = useState(true);
     return ( 
-        <div className="flex h-screen overflow-hidden">
-      {/* Sidebar */}
-      <Sidebar sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} />
-      {/* Content area */}
+      
       <div className="relative flex flex-col flex-1 overflow-y-auto overflow-x-hidden">
-      <Header sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} />
       <main>
       <Box
       component="main"
@@ -63,7 +59,6 @@ const MyProfile = (props) => {
       </main>
 
       </div>
-    </div>
      );
 }
  

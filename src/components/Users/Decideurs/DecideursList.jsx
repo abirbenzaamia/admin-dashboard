@@ -31,6 +31,7 @@ const columns = [
     headerName: 'Actions',
     width: 150,
     renderCell: (params) => (
+      console.log(params.id),
       <Link to={`/Decideur/${params.id}`} underline="none" >
       <Button
            variant="contained"

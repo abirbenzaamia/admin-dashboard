@@ -11,21 +11,21 @@ import {
   import { useState , useEffect } from 'react';
 import {getLocataireInfo} from '../../../modules/Users/locataires.crud'
   
- const UserProfile = (props) => {
-  const [user, setUser] = useState([]);
+ const UserProfile = ({user}) => {
+  //const [user, setUser] = useState([]);
   
-  console.log(props.id);
-  useEffect(() => {
-    getLocataireInfo(props.id).then(({ data }) => {
-      setUser(data.user);
-      console.log(data.user);
+  console.log(user);
+  // useEffect(() => {
+  //   getLocataireInfo(user.id).then(({ data }) => {
+  //     setUser(data.user);
+  //     console.log(data.user);
 
 
-    })
-    .catch(err => {
-      console.log(err)
-    })
-  }, [props.id])
+  //   })
+  //   .catch(err => {
+  //     console.log(err)
+  //   })
+  //}, [props.id])
   return (
     <Card>
     <CardContent>
@@ -37,7 +37,7 @@ import {getLocataireInfo} from '../../../modules/Users/locataires.crud'
         }}
       >
         <Avatar
-          src={user.avatar}
+          src={user.Locataire.photo}
           sx={{
             height: 64,
             mb: 2,
