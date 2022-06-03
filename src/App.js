@@ -19,6 +19,8 @@ import Sidebar from './components/Sidebar/Sidebar';
 import { theme } from './theme';
 import { ThemeProvider } from '@mui/material/styles';
 import VehiculesList from './pages/Vehicles/VehiclesList'
+import VehiclesTracking from './pages/Tracking/VehiclesTracking'
+import RealTimeTracking from './pages/RealTimeTracking/RealTimeTracking'
 
 
 function App() {
@@ -74,6 +76,10 @@ function App() {
            <LocationsList/> </ThemeProvider>} />
            <Route exact path="/vehicules" element={  <ThemeProvider theme={theme}>
            <VehiculesList/> </ThemeProvider>} />
+           <Route exact path="/suivie_vehicules" element={  <ThemeProvider theme={theme}>
+           <VehiclesTracking/> </ThemeProvider>} />
+           <Route exact path="/vue_globale" element={  <ThemeProvider theme={theme}>
+           <RealTimeTracking/> </ThemeProvider>} />
          </Routes>
      </main>
  

@@ -25,27 +25,11 @@ import {
           sx={{ m: 1 }}
           variant="h4"
         >
-          Products
+          Réservations actives
         </Typography>
         <Box sx={{ m: 1 }}>
-          <Button
-           // startIcon={(<UploadIcon fontSize="small" />)}
-            sx={{ mr: 1 }}
-          >
-            Import
-          </Button>
-          <Button
-           // startIcon={(<DownloadIcon fontSize="small" />)}
-            sx={{ mr: 1 }}
-          >
-            Export
-          </Button>
-          <Button
-            color="primary"
-            variant="contained"
-          >
-            Add products
-          </Button>
+        
+          
         </Box>
       </Box>
       <Box sx={{ mt: 3 }}>
@@ -66,7 +50,7 @@ import {
                     </InputAdornment>
                   )
                 }}
-                placeholder="Search product"
+                placeholder="Rechercher une réservation"
                 variant="outlined"
               />
             </Box>

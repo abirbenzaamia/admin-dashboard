@@ -30,16 +30,14 @@ function MyComponent() {
     socket.on("position_update", data => {
     
       setResponse(data);
-      
-   
       const cordination = {
          lat: parseFloat(response.latitude),
          lng: parseFloat(response.longitude)
        };
-      
-      setCurrent(cordination);      
+      setCurrent(cordination);
+      console.log(cordination);  
     });
-  }, []);
+  }, [response.latitude, response.longitude]);
   
   
   
