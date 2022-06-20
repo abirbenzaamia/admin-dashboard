@@ -7,10 +7,7 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { Avatar } from '@mui/material';
 import { Box , Container } from '@material-ui/core';
 import { useState, useEffect } from 'react';
-import { getLocations } from '../../modules/Vehicles/locations.crud';
 import { DataGrid } from '@mui/x-data-grid';
-import Link from '@mui/material/Link';
-import { Button } from '@mui/material';
 import IconButton from '@mui/material/IconButton';
 import Chip from '@mui/material/Chip';
 import lockIncon from '../../assets/icons/lock.svg'
@@ -18,9 +15,21 @@ import unlockIncon from '../../assets/icons/unlock.svg'
 import FaceIcon from '@mui/icons-material/Face';
 import LockOpenOutlinedIcon from '@mui/icons-material/LockOpenOutlined';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
-export default function ActiveReservationsList({vehicules}) {
- 
+import { GridRowParams } from '@mui/x-data-grid';
+
+export default function ActiveReservationsList({vehicules,handleClickShowActiveReservationDetails}) {
+
+    const [open, setOpen] = React.useState(false);
+    
+    const handleDrawerOpen = () => {
+      setOpen(true);
+    };
+  
+    const handleDrawerClose = () => {
+      setOpen(false);
+    };
     const [pageSize, setPageSize] = useState(5);
+
       const columns = [
           
         {
@@ -67,7 +76,7 @@ export default function ActiveReservationsList({vehicules}) {
       ];
   return (
     <div>
-      <Accordion>
+      <Accordion  >
         <AccordionSummary
           expandIcon={<ExpandMoreIcon />}
           aria-controls="panel1a-content"
@@ -90,7 +99,10 @@ export default function ActiveReservationsList({vehicules}) {
       onPageSizeChange={(newPageSize) => setPageSize(newPageSize)}
       rowsPerPageOptions={[5, 10, 20]}
       pagination
-
+      onRowClick={(GridRowId)=>{
+console.log(GridRowId.id);
+handleClickShowActiveReservationDetails(GridRowId.id);
+      }}
     />
   </div>
         </Box>

@@ -129,7 +129,30 @@ export const theme = createTheme({
           }
         }
       }
+    },
+    MuiDataGrid: {
+      styleOverrides: {
+        root: {
+          '& .MuiDataGrid-cell:focus':{
+            border : 'none',
+            outline: 'none',
+          },
+          '& .MuiDataGrid-cell:focus-within':{
+            border : 'none',
+            outline: 'none',
+          },
+          // '& .MuiDataGrid-row.Mui-selected':{
+          //   backgroundColor : '#3333FF'
+          // },
+          '& .MuiDataGrid-row:hover':{
+            cursor: 'pointer',
+          },
+          
+          
+        }
+      }
     }
+
   },
   palette: {
     neutral: {
