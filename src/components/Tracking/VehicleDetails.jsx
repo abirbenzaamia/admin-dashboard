@@ -8,18 +8,16 @@ import {getLocationInfo} from '../../modules/Vehicles/locations.crud'
 import {getLocataireInfo} from '../../modules/Users/locataires.crud'
 const VehicleDetails = ({id}) => {
     const [reservation,setReservation] = useState();
-    const [locataire,setLocataires] = useState();
+    const [locataire,setLocataire] = useState();
     useEffect(()=>{
       const getReservationDetails = async ()=>{
         const response = await getLocationInfo(id);
+        const response1 = await getLocataireInfo(response.data.locataire.locataireId)
         console.log(response.data);
+        console.log(response1.data);
+        setLocataire(response1.data.user);
         setReservation(response.data);
       }
-    //   const getLocataireInfo = async ()=>{
-    //     const response = await getLocataireInfo(99);
-    //     console.log(response.data);
-    //     setLocataires(response.data);
-    //  }
      getReservationDetails()
      .catch(console.error);
  }, [id])
@@ -72,13 +70,15 @@ const VehicleDetails = ({id}) => {
                      Locataire
                  </Typography>
                </Grid>
+               {locataire &&
               <Typography variant="body1" color="initial">
-                 {/* {locataire.nom +' '+locataire.prenom} */}
+                  {locataire.nom +' '+locataire.prenom} 
               </Typography>
+              }
              </Grid>
            {/* voir profil */}
            <Grid item xs={4}>
-               <Button>
+               <Button  href={`/locataire/${reservation.locataire.locataireId}`}>
                  Voir profil
                </Button>
            </Grid>

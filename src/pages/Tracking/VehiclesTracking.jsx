@@ -7,15 +7,20 @@ import Header from '../../components/Header/Header';
 import ActiveReservationsList from '../../components/Tracking/ActiveReservationsList'
 import ActiveReservationDetails from '../../components/Tracking/VehicleDetails'
 import MapDetails from '../../components/Tracking/Map'
+import VehiclesList from '../../components/Tracking/VehiclesList';
 import { Divider } from '@material-ui/core';
 import { getLocations } from '../../modules/Vehicles/locations.crud';
 import { APIKeys } from '../../services/webSocket.services'
+import { getVehicules} from '../../modules/Vehicles/vehicles.crud'
+
 const VehiclesTracking = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [locations, setLocations] = useState();
   const [showActiveReservationDetails, setShowActiveReservationDetails] = useState(false);
   const [width,setWidth] = useState(15);
   const [idReservation,setIdReservation] = useState();
+  const [vehicules, setVehicules] = useState();
+
 
   Geocode.setApiKey(APIKeys.GoogleMaps);
   const _getNameAdress =  async (lat,long) => {
@@ -45,10 +50,25 @@ const VehiclesTracking = () => {
 
         }
         setLocations(vehicules); 
+        console.log(locations)
       }
       getReservations()
     // make sure to catch any error
     .catch(console.error);;
+}, [])
+useEffect(() => {
+  var cars = []
+  getVehicules().then(({ data }) => {
+    //setVehicules(data);
+    for (const row of data ){
+      cars.push({id:row.idVehicule,matricule:row.matricule,vehicule: row.marque+'-'+row.modele,couleur:row.couleur,verrouillee:row.verrouillee,enService:row.enService,am:row.am.amId,type:row.typeVehicule.valTypeVehicule,tarif:row.typeVehicule.tarifHeure});
+    }
+    setVehicules(cars);
+    console.log(cars);
+  })
+  .catch(err => {
+    console.log(err)
+  })
 }, [])
     const handleClickShowActiveReservationDetails = (id) =>{
       setShowActiveReservationDetails(false);
@@ -116,7 +136,22 @@ const VehiclesTracking = () => {
   </Grid>
  
   
-</Grid>    
+</Grid>  
+      <Grid container spacing={0} columns={15}>
+      <Grid item xs={15} >
+      <Box
+      component="main"
+      sx={{
+        //flexGrow: 1,
+        p:2,
+        m:0,
+        borderRadius:0,
+      }}   >
+     {  vehicules && <VehiclesList vehicules={vehicules}  />}
+
+      </Box>
+        </Grid>
+      </Grid>
     </main>
 
     </div>

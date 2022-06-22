@@ -35,13 +35,9 @@ function MapDetails({id}) {
     console.log(arrivee)
       setReservation(response.data);
     }
-  //   const getLocataireInfo = async ()=>{
-  //     const response = await getLocataireInfo(99);
-  //     console.log(response.data);
-  //     setLocataires(response.data);
-  //  }
    getReservationDetails()
    .catch(console.error);
+   calculateRoute().catch(console.error);
 }, [id])
 
 const [directionResponse, setDirectionResponse] = useState(null);
@@ -100,9 +96,9 @@ const containerStyle = {
         zoom={20}
       >
          
-         <Button onClick={calculateRoute}>voir direction</Button>
-        <Marker position= {depart}/>
-        <Marker position= {arrivee}/>
+         {/* <Button onClick={calculateRoute}>voir direction</Button> */}
+        {/* <Marker position= {depart}/>
+        <Marker position= {arrivee}/> */}
        {directionResponse && <DirectionsRenderer directions={directionResponse}/>}
           {/* <Polyline path={ pathCoordinates}
          options={{
