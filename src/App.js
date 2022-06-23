@@ -21,6 +21,7 @@ import { ThemeProvider } from '@mui/material/styles';
 import VehiculesList from './pages/Vehicles/VehiclesList'
 import VehiclesTracking from './pages/Tracking/VehiclesTracking'
 import RealTimeTracking from './pages/RealTimeTracking/RealTimeTracking'
+import DemandesSupport from './pages/DemandesSupport/DemandesSupport';
 
 
 function App() {
@@ -80,6 +81,8 @@ function App() {
            <VehiclesTracking/> </ThemeProvider>} />
            <Route exact path="/vue_globale" element={  <ThemeProvider theme={theme}>
            <RealTimeTracking/> </ThemeProvider>} />
+           <Route exact path="/demandes_support" element={  <ThemeProvider theme={theme}>
+           <DemandesSupport/> </ThemeProvider>} />
          </Routes>
      </main>
  

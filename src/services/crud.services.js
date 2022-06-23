@@ -13,8 +13,8 @@ export const Services = {
     DECIDEUR_URL: URL_ROOT+'/decideur/',
     ADD_DECIDEUR_URL: URL_ROOT+'/decideur',
     VEHICLE_URL:URL_ROOT1+'/vehicule',
-    LOCATION_URL:URL_ROOT1+'/location'
-
+    LOCATION_URL:URL_ROOT1+'/location',
+    DEMANDE_SUPPORT_URL:URL_ROOT1+'/demande-support'
 }
 
 export const CrudService = {
