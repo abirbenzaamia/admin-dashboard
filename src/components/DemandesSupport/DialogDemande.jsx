@@ -8,7 +8,7 @@ import DialogTitle from '@mui/material/DialogTitle';
 import { repondreDemandeSupport } from '../../modules/DemandesSupport/demande-support.crud';
 import { useState } from 'react';
 
-const DialogDemand = ({id,open,handleClose}) => {
+const DialogDemand = ({id,open,handleClose,handleSend}) => {
     const [message, setMessage] = useState();
     const handleRepondreDemande = () => {
         repondreDemandeSupport(id,message).then(({ data }) => {
@@ -38,7 +38,7 @@ const DialogDemand = ({id,open,handleClose}) => {
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose} >Annuler</Button>
-          <Button onClick={()=>{handleRepondreDemande();handleClose();}}>Envoyer</Button>
+          <Button onClick={()=>{handleRepondreDemande();handleClose();handleSend();}}>Envoyer</Button>
         </DialogActions>
       </Dialog> );
 }

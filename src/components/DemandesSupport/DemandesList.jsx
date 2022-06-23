@@ -8,7 +8,10 @@ import Scrollbar from '../Scrollbar';
 //icons
 import { BsQuestionSquare , BsFillReplyFill  } from "react-icons/bs";
 import DialogDemand from './DialogDemande';
-import {useState} from 'react';
+import {useState,forwardRef} from 'react';
+import Snackbar from '@mui/material/Snackbar';
+import MuiAlert from '@mui/material/Alert';
+
 // ----------------------------------------------------------------------
 
 DemandesList.propTypes = {
@@ -56,7 +59,25 @@ function DemandeItem({ demande }) {
   const handleClose = () => {
     setOpen(false);
   };
+  //Snackbar
+  const Alert = forwardRef(function Alert(props, ref) {
+    return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
+  });
+  const [openSnackbar, setOpenSnackbar] = useState(false);
+
+  const handleClickSnackbar = () => {
+    setOpenSnackbar(true);
+  };
+
+  const handleCloseSnackbar = (event, reason) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+
+    setOpenSnackbar(false);
+  };
   return (
+    
     <Stack direction="row" alignItems="center" spacing={2} padding={0}>
       <Box   sx={{ width: 48, height: 48, borderRadius: 1.5, flexShrink: 0 }}>
       <Typography gutterBottom variant="h2" component="div">
@@ -80,7 +101,12 @@ function DemandeItem({ demande }) {
       <Button variant="outlined" endIcon={<BsFillReplyFill />} onClick={handleClickOpen}>
   Répondre
 </Button>
-<DialogDemand  id ={demande.id} open={open} handleClose={handleClose} />
+<DialogDemand  id ={demande.id} open={open} handleClose={handleClose} handleSend={handleClickSnackbar} />
+<Snackbar open={openSnackbar} autoHideDuration={6000} onClose={handleCloseSnackbar}>
+        <Alert onClose={handleCloseSnackbar} severity="success" sx={{ width: '100%' }}>
+          Votre réponse a été envoyé !
+        </Alert>
+      </Snackbar>
     </Stack>
   );
 }
