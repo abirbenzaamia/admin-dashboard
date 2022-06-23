@@ -6,8 +6,9 @@ import { fToNow , fDateTimeSuffix } from '../../utils/formatTime';
 // components
 import Scrollbar from '../Scrollbar';
 //icons
-import { BsQuestionSquare } from "react-icons/bs";
-
+import { BsQuestionSquare , BsFillReplyFill  } from "react-icons/bs";
+import DialogDemand from './DialogDemande';
+import {useState} from 'react';
 // ----------------------------------------------------------------------
 
 DemandesList.propTypes = {
@@ -22,14 +23,13 @@ export default function DemandesList({ title, subheader, list, ...other }) {
       <CardHeader title={title} subheader={subheader} />
 
       <Scrollbar>
-        <Stack spacing={3} sx={{ p: 3, pr: 0 }}>
+        <Stack spacing={3} sx={{ p: 3, pr: 2 }}>
           {list.map((demande) => (
             <DemandeItem key={demande.idAnomalie} demande={demande} />
           ))}
         </Stack>
       </Scrollbar>
 
- 
     </Card>
   );
 }
@@ -47,9 +47,17 @@ DemandeItem.propTypes = {
 
 function DemandeItem({ demande }) {
   const { description, postedAt } = demande;
+  const [open, setOpen] = useState(false);
 
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
   return (
-    <Stack direction="row" alignItems="center" spacing={2}>
+    <Stack direction="row" alignItems="center" spacing={2} padding={0}>
       <Box   sx={{ width: 48, height: 48, borderRadius: 1.5, flexShrink: 0 }}>
       <Typography gutterBottom variant="h2" component="div">
       <BsQuestionSquare/>
@@ -69,6 +77,10 @@ function DemandeItem({ demande }) {
       <Typography variant="caption" sx={{ pr: 3, flexShrink: 0, color: 'text.secondary' }}>
         {fDateTimeSuffix(postedAt)} 
       </Typography>
+      <Button variant="outlined" endIcon={<BsFillReplyFill />} onClick={handleClickOpen}>
+  Répondre
+</Button>
+<DialogDemand  id ={demande.id} open={open} handleClose={handleClose} />
     </Stack>
   );
 }
