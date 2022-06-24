@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { GoogleMap, LoadScript ,Marker,InfoWindow,Polyline,StandaloneSearchBox} from '@react-google-maps/api';
 
 import socketIOClient from "socket.io-client";
-const ENDPOINT = "https://autorun-geopositioning.herokuapp.com/";
+const ENDPOINT = "https://autorun-websocket.herokuapp.com";
 
 
 
@@ -14,55 +14,43 @@ function MyComponent() {
    
   const [current, setCurrent] = useState(depart);
   
-  
-  const pathCoordinates = [
-   depart,
-   current
-  ];  
 
   const [response, setResponse] = useState("");
-            
+  const [vehicules, setVehicules] = useState();         
   useEffect(() => {
    
     const socket = socketIOClient(ENDPOINT);
     
-    socket.emit("position_update")
+    socket.emit("subscribe", []);
     socket.on("position_update", data => {
-    
-      setResponse(data);
+      console.log(data.idVehicule)
       const cordination = {
-         lat: parseFloat(response.latitude),
-         lng: parseFloat(response.longitude)
+         lat: parseFloat(data.infoVehicule.latitude),
+         lng: parseFloat(data.infoVehicule.logitude)
        };
       setCurrent(cordination);
-      console.log(cordination);  
+      //console.log(cordination);  
     });
-  }, [response.latitude, response.longitude]);
+  }, []);
   
   
   
  
 const containerStyle = {
-  width: '500px',
-  height: '500px' } 
+  width: '100%',
+  height: '300px'
+ } 
   return (
     
     <LoadScript  googleMapsApiKey="AIzaSyCNdS-eHQeAsWyQ6xIEwROKmkgaA7zm6a4">
       <GoogleMap
         mapContainerStyle={containerStyle}
-        center={depart}
+        center={current}
         zoom={20}
       >
          
-       <Marker position= {depart}/>
        <Marker position= {current}/>
       
-          <Polyline path={ pathCoordinates}
-         options={{
-          strokeColor: "#ff2527",
-          strokeOpacity: 0.75,
-          strokeWeight: 5,
-      }}/>
       </GoogleMap>
     </LoadScript>
    

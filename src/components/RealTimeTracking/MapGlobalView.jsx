@@ -7,87 +7,42 @@ import Drawer from '@mui/material/Drawer';
 import Stack from '@mui/material/Stack';
 import Paper from '@mui/material/Paper';
 import { styled } from '@mui/material/styles';
+import { Services, APIKeys } from "../../services/webSocket.services";
 
-const ENDPOINT = "https://autorun-geopositioning.herokuapp.com/";
-
-
-const Item = styled(Paper)(({ theme }) => ({
-  backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
-  ...theme.typography.body2,
-  padding: theme.spacing(1),
-  textAlign: 'center',
-  color: theme.palette.text.secondary,
-}));
-
-export default function Map({places}) {
-  const [state, setState] = React.useState({
-    top: false,
-    left: false,
-    bottom: false,
-    right: false,
-  });
-
-  const toggleDrawer = (anchor, open) => (event) => {
-    if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
-      return;
-    }
-
-    setState({ ...state, [anchor]: open });
-  };
-
-  const list = (anchor) => (
-    <Box
-      sx={{ width: anchor === 'top' || anchor === 'bottom' ? 'auto' : 350 ,p:2 ,m:3,borderRadius:1,borderColor:"#707070"}}
-      role="presentation"
-      onClick={toggleDrawer(anchor, false)}
-      onKeyDown={toggleDrawer(anchor, false)}
-    >
-      <Stack spacing={3}>
-        <Item>Item 3</Item>
-        <Item>Item 2</Item>
-        <Item>Item 3</Item>
-      </Stack>
-    </Box>
-
-  );
-
-  const [vehicules,setVehicules] = useState(places)
-  const depart = {
+export default function MapComponent({vehicules}) {
+  const socket = socketIOClient(Services.WEB_SOCKET_URL);
+  const center = {
     lat: 36.7216959,
      lng: 3.1254200 
   };
    
-  const [current, setCurrent] = useState(depart);
-  
-  
-  const pathCoordinates = [
-   depart,
-   current
-  ];  
+  const carsId = [];
+  const [cars, setCars] = useState(new Map())
 
-  const [response, setResponse] = useState("");
-            
+  const current = {
+    lat:0,
+    lng:0
+  };
+  //get cars ids 
+  vehicules.forEach(car => {
+    carsId.push(car.idVehicule)
+  });
+
+  //console.log(carsId);     
   useEffect(() => {
-   
-    const socket = socketIOClient(ENDPOINT);
-    
-    socket.emit("position_update")
+    //console.log(vehicules);
+    socket.emit("subscribe", carsId);
     socket.on("position_update", data => {
-    
-      setResponse(data);
-      const cordination = {
-         lat: parseFloat(response.latitude),
-         lng: parseFloat(response.longitude)
-       };
-      setCurrent(cordination);
-      console.log(cordination);  
+      //console.log(data)
+      setCars(cars.set(data.idVehicule,data));
+      //console.log(data)
+     //console.log(position);
     });
-  }, [response.latitude, response.longitude]);
-  
- 
+  }, [cars, carsId, socket, vehicules])
+   console.log(cars);
 const containerStyle = {
-  width: '2000px',
-  height: '1000px',
+  width: '100%',
+  height: '500px',
 
  } 
  var iconPin = {
@@ -100,27 +55,28 @@ const containerStyle = {
   return (
    
     
-    <LoadScript  googleMapsApiKey="AIzaSyCNdS-eHQeAsWyQ6xIEwROKmkgaA7zm6a4" language="french" region="Algiers">
+    <LoadScript  googleMapsApiKey={APIKeys.GoogleMaps} language="french" region="Algiers">
       <GoogleMap
         mapContainerStyle={containerStyle}
-       center={current}
-        zoom={20}
+       center={center}
+        zoom={5}
       >
-         
-       <div>
-      {['right'].map((anchor) => (
-        <React.Fragment key={anchor}>
-       <Marker position= {current} icon={iconPin} zIndex={10} clickable={true} onClick={toggleDrawer(anchor, true)}/>
-          <Drawer
-            anchor={anchor}
-            open={state[anchor]}
-            onClose={toggleDrawer(anchor, false)}
-          >
-            {list(anchor)}
-          </Drawer>
-        </React.Fragment>
-      ))}
-    </div>
+        {
+          [...cars.keys()].map(k => (
+            //  current.lat = cars.get(k).infoVehicule.latitude,
+            //  current.lng = cars.get(k).infoVehicule.logitude,
+
+            <Marker position={
+              {
+              lat : cars.get(k).infoVehicule.latitude,
+              lng : cars.get(k).infoVehicule.logitude
+            }
+          } icon={iconPin} zIndex={10} clickable={true} />
+          ))
+        }
+{/* <Marker position= {center} icon={iconPin} zIndex={10} clickable={true} /> */}
+
+
       </GoogleMap>
     </LoadScript>
    
