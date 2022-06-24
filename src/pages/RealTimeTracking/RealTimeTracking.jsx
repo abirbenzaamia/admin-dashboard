@@ -22,12 +22,12 @@ const VehiclesTracking = () => {
   //shopw details 
   const [showVehicleDetails, setShowVehicleDetails] = useState(false);
   const [width,setWidth] = useState(15);
-  const [idReservation,setIdReservation] = useState();
+  const [idVehicule,setIdVehicule] = useState();
   const handleClickShowActiveReservationDetails = (id) =>{
     setShowVehicleDetails(false);
     setShowVehicleDetails(true);
     setWidth(10);
-    setIdReservation(id);
+    setIdVehicule(id);
   }
   return (
     
@@ -51,12 +51,12 @@ const VehiclesTracking = () => {
       
       }}
     >
-    { vehicules && <MapGlobalView vehicules={vehicules}/>}
+    { vehicules && <MapGlobalView vehicules={vehicules} showDetails={handleClickShowActiveReservationDetails}/>}
     </Box>
   </Grid>
   <Divider orientation="vertical" flexItem /> 
-  <Grid item xs={4.99} >
-  <VehicleDetails />
+  <Grid item xs={4.75} >
+  { showVehicleDetails && <VehicleDetails id={idVehicule} />}
   </Grid>
   </Grid>
 
