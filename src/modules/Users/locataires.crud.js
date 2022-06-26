@@ -19,3 +19,9 @@ export function refuseLocataire(id,argument){
     return axios.patch(Services.LOCATAIRE_URL+id,{ argument: argument },{ params: { status: "refused" } })
 }
 
+export async function getNbAcceptedPerMonth(){
+
+}
+export async function getNbRefusedPerMonth(){
+    
+}

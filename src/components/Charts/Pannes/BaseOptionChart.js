@@ -72,7 +72,7 @@ export function BaseOptionChart() {
   };
 
   const LABEL_VALUE = {
-    offsetY: 8,
+    offsetY: 2,
     color: theme.palette.text.primary,
     ...theme.typography.h3
   };
@@ -144,7 +144,10 @@ export function BaseOptionChart() {
     // Xaxis
     xaxis: {
       axisBorder: { show: false },
-      axisTicks: { show: false }
+      axisTicks: { show: false },
+      convertedCatToNumeric:true,
+      type:"",
+      
     },
 
     // Markers

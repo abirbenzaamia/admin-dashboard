@@ -17,7 +17,6 @@ import {modifyInfoAM} from '../../../modules/Users/ams.crud'
 
 
 const AMProfileDetails = ({user}) => {
-  console.log(user);
   const [id,setId] = useState(user.id);
   const [nom, setNom] = useState(user.nom);
   const [prenom, setPrenom] = useState(user.prenom);

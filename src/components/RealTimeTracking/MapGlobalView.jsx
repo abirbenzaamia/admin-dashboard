@@ -104,14 +104,15 @@
    //   });
    // }  
     useEffect(() => {
-      //console.log(vehicules);
-      socket.emit("subscribe", carsId);
+      console.log(carsId);
+      socket.emit("subscribe", [10,100,101]);
       socket.on("position_update", data => {
         //console.log(data)
         setCars(cars.set(data.idVehicule,data));
         //console.log(data)
        //console.log(position);
       });
+      //socket.disconnect();
       //return () => socket.close();
     }, [cars, carsId, socket])
    //console.clear();
@@ -140,7 +141,6 @@
          zoom={5}
        >
          {
-           console.log('hhhhhhhhhhh')
          }
          {
            [...cars.keys()].map(k => (
@@ -150,11 +150,12 @@
                {
                lat : cars.get(k).infoVehicule.latitude,
                lng : cars.get(k).infoVehicule.logitude
+
              }
            }   icon={iconPin}
             zIndex={10} 
             //{showDetails(cars.get(k).idVehicule)}
-            // onClick={showDetails(cars.get(k).idVehicule)}
+             //onClick={showDetails(cars.get(k).idVehicule)}
              />
            ))
          }

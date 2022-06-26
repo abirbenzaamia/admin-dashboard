@@ -10,7 +10,10 @@ import {
   getDonePannes ,
   getAllPannesPerMonthParAm,
   getDonePannesPerMonthParAm,
-  getOngoingPannesPerMonthParAm
+  getOngoingPannesPerMonthParAm,
+  getAllPannesPerWeekParAm,
+  getDonePannesPerWeekParAm,
+  getOngoingPannesPerWeekParAm
  } from '../../modules/Pannes/panne.crud';
 import TotalPannesPerMonth from '../../components/Charts/Pannes/TotalPannesPerMonth';
 import {
@@ -28,7 +31,14 @@ const UserProfil = (props) => {
   const [grapheAll,setGrapheAll] = useState();
   const [grapheDone,setGrapheDone] = useState();
   const [grapheOngoing,setGrapheOngoing] = useState();
-
+  const [dataPerWeekTotal, setDataPerWeekTotal] = useState();
+    const [dataPerWeekDone, setDataPerWeekDone] = useState();
+    const [dataPerWeekOngoing, setDataPerWeekOngoing] = useState();
+  const semaine = new Array(52);
+  for (let i = 0; i < semaine.length; i++) {
+    semaine[i]= (i+1).toString();
+    
+  }
   const {id} = useParams();
   const [user, setUser] = useState();
   useEffect(() => {
@@ -55,11 +65,18 @@ const UserProfil = (props) => {
       setGrapheDone(responseGraphe2);
       const reponseGraphe3 = await getOngoingPannesPerMonthParAm(id);
       setGrapheOngoing(reponseGraphe3);
+      const reponseGrapheWeek1 = await getAllPannesPerWeekParAm(id);
+        setDataPerWeekTotal(reponseGrapheWeek1);
+        const reponseGrapheWeek2 = await getDonePannesPerWeekParAm(id);
+        setDataPerWeekDone(reponseGrapheWeek2);
+        const reponseGrapheWeek3 = await  getOngoingPannesPerWeekParAm(id);
+        setDataPerWeekOngoing(reponseGrapheWeek3);
+
 
     }
     getNb()
     .catch(console.error);
-  })
+  },[id, totalDonePannes, totalPannes])
     const [sidebarOpen, setSidebarOpen] = useState(true);
     return ( 
         
@@ -145,7 +162,7 @@ const UserProfil = (props) => {
           <Grid item xs={12} sm={6} md={4}>
             <TotalPannes title="Pannes en attente" total={totalOngoingPannes} color="warning" />
           </Grid>
-          <Grid item xs={12} md={6} lg={8}>
+          <Grid item xs={12} md={6} lg={12}>
             <TotalPannesPerMonth
               title="Nombre de pannes par mois"
               subheader="Année 2022"
@@ -184,6 +201,38 @@ const UserProfil = (props) => {
                 },
               ]}
             />
+          </Grid>
+           {/* Stastics per week */}
+           <Grid item xs={12} md={6} lg={12}>
+          <TotalPannesPerMonth
+              title="Nombre de pannes par semaine"
+              subheader="Année 2022"
+              chartLabels={semaine}
+              chartData={[
+                {
+                  name: 'Pannes réparées',
+                  type: 'area',
+                  fill: 'gradient',
+                  data: dataPerWeekDone,
+                },
+                {
+                  name: 'Pannes en attente',
+                  type: 'area',
+                  fill: 'gradient',
+                  data: dataPerWeekOngoing,
+                },
+                {
+                  name: 'Pannes',
+                  type: 'area',
+                  fill: 'gradient',
+                  // data: dataPerWeek,
+                 // data : dataPerWeekTotal.subarray((page-1)*4,(page-1)*4+3),
+                 data: dataPerWeekTotal,
+                },
+              ]}
+            />
+        
+
           </Grid>
         </Grid>
       </Box>
