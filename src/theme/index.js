@@ -1,6 +1,14 @@
 import { createTheme } from '@mui/material';
 
+const CHART_COLORS = {
+  violet: ['#826AF9', '#9E86FF', '#D0AEFF', '#F7D2FF'],
+  blue: ['#2D99FF', '#83CFFF', '#A5F3FF', '#CCFAFF'],
+  green: ['#2CD9C5', '#60F1C8', '#A4F7CC', '#C0F2DC'],
+  yellow: ['#FFE700', '#FFEF5A', '#FFF7AE', '#FFF3D6'],
+  red: ['#FF6C40', '#FF8F6D', '#FFBD98', '#FFF2D4'],
+};
 export const theme = createTheme({
+  
   breakpoints: {
     values: {
       xs: 0,
@@ -154,7 +162,9 @@ export const theme = createTheme({
     }
 
   },
+  
   palette: {
+    chart: CHART_COLORS,
     neutral: {
       100: '#F3F4F6',
       200: '#E5E7EB',
@@ -193,19 +203,19 @@ export const theme = createTheme({
     },
     success: {
       main: '#14B8A6',
-      light: '#43C6B7',
+      light: '#E9FCD4',
       dark: '#0E8074',
       contrastText: '#FFFFFF'
     },
     info: {
       main: '#2196F3',
-      light: '#64B6F7',
+      light: '#D1E9FC',
       dark: '#0B79D0',
       contrastText: '#FFFFFF'
     },
     warning: {
       main: '#FFB020',
-      light: '#FFBF4C',
+      light: '#FFF7CD',
       dark: '#B27B16',
       contrastText: '#FFFFFF'
     },

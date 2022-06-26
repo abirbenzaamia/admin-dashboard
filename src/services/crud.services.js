@@ -14,7 +14,9 @@ export const Services = {
     ADD_DECIDEUR_URL: URL_ROOT+'/decideur',
     VEHICLE_URL:URL_ROOT1+'/vehicule',
     LOCATION_URL:URL_ROOT1+'/location',
-    DEMANDE_SUPPORT_URL:URL_ROOT1+'/demande-support'
+    DEMANDE_SUPPORT_URL:URL_ROOT1+'/demande-support',
+    PANNE_URL:URL_ROOT1+'/anomalie', //une panne est une anomalie
+    ANOMALIE_URL: URL_ROOT1+'/anomalie'
 }
 
 export const CrudService = {

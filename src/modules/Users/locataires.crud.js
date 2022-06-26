@@ -18,3 +18,4 @@ export function refuseLocataire(id,argument){
     console.log(id,argument);
     return axios.patch(Services.LOCATAIRE_URL+id,{ argument: argument },{ params: { status: "refused" } })
 }
+
