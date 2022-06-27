@@ -105,7 +105,7 @@
    // }  
     useEffect(() => {
       console.log(carsId);
-      socket.emit("subscribe", [10,100,101]);
+      socket.emit("subscribe", [20,11,12]);
       socket.on("position_update", data => {
         //console.log(data)
         setCars(cars.set(data.idVehicule,data));

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { useState, Fragment } from 'react'
+import { useState, Fragment , useEffect } from 'react'
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 import FormControlLabel from '@mui/material/FormControlLabel';
@@ -19,7 +19,7 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import EyeOutline from 'mdi-material-ui/EyeOutline'
 import EyeOffOutline from 'mdi-material-ui/EyeOffOutline'
 import Animation from '../../assets/illusrations/animated/login_illustration.json'
-import {loginATC} from '../../modules/Auth/Auth.crud'
+import {loginATC,loginDecideur} from '../../modules/Auth/Auth.crud'
 const theme = createTheme();
 // async function loginATC(credentials) {
 //   console.log(JSON.stringify(credentials));
@@ -38,22 +38,52 @@ export default function Login() {
    const [email, setEmail] = useState();
    const [mdp, setMdp] = useState();
    //const [id, setId] = useState();
- 
+  useEffect(() => {
+    const submit = async ()=>{
+      const response1 = await loginATC(
+        email,
+        mdp
+      );
+      console.log(response1.status);
+    }
+  }, [])
+  
    const handleSubmit = async e => {
      e.preventDefault();
-     const response = await loginATC(
-       email,
-       mdp
-     );
-     console.log(response);
-      if ('user' in response.data) {
-          localStorage.setItem('accessToken', response.headers.authorization);
-          localStorage.setItem('connected', true);
-          localStorage.setItem('user', JSON.stringify(response.data['user']));
-          window.location.href = "/dashboard";
-      } else {
-        console.log(response.message);
-      }
+     const response1 = await loginATC(
+      email,
+      mdp).catch(console.error);
+      //console.log(response1);
+      if (response1 == undefined) {
+        console.log("hhhhh");
+        const response2 = await loginDecideur(
+               email,
+               mdp
+             ).catch(console.error);
+             if (response2 == undefined) { 
+            }else{
+              if ('user' in response2.data) {
+                console.log(response2);
+                  localStorage.setItem('accessToken', response2.headers.authorization);
+                  localStorage.setItem('connected', true);
+                  localStorage.setItem('typeUser', 'decideur');
+                  localStorage.setItem('user', JSON.stringify(response2.data['user']));
+                  window.location.href = "/dashboard_decideur";
+             }
+            }
+          }else{
+        if ('user' in response1.data) {
+         console.log(response1);
+           localStorage.setItem('accessToken', response1.headers.authorization);
+           localStorage.setItem('connected', true);
+           localStorage.setItem('typeUser', 'atc');
+           localStorage.setItem('user', JSON.stringify(response1.data['user']));
+           window.location.href = "/dashboard_atc";
+       }
+      }  
+      
+     
+
    }
   // ** States
  const [values, setValues] = useState({

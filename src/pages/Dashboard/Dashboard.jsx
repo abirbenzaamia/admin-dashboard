@@ -12,7 +12,7 @@ const Dashboard = () => {
       getLocataires().then(({ data }) => {
         var acceptedLocataire = [];
         data.forEach(row => {
-          if (row.Statut.val_statut==="demandé") {
+          if (row.Statut.val_statut==="demandé" && row.Locataire!==null) {
             acceptedLocataire.push(row);
           }
         });

@@ -331,7 +331,6 @@ export async function getAllPannesPerWeekParAm(id){
                         pannes[week-1]++;
                      }
                  }
-                 console.log(pannes+'hhhhhhhhh');
                           return pannes;
      }
      catch (err) {
@@ -366,7 +365,6 @@ export async function getDonePannesPerWeekParAm(id){
                         }
                     }
                  }
-         console.log(pannes+'hhhhhhhhh');
          return pannes;
      }
      catch (err) {
@@ -401,7 +399,6 @@ export async function getOngoingPannesPerWeekParAm(id){
                         }
                     }
                  }
-                 console.log(pannes+'hhhhhhhhh');
          return pannes;
      }
      catch (err) {

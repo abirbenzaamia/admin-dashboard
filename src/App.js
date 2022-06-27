@@ -22,7 +22,7 @@ import VehiculesList from './pages/Vehicles/VehiclesList'
 import VehiclesTracking from './pages/Tracking/VehiclesTracking'
 import RealTimeTracking from './pages/RealTimeTracking/RealTimeTracking'
 import DemandesSupport from './pages/DemandesSupport/DemandesSupport';
-
+import DashboardDecideur from './pages/DecideurPages/Dashboard/DashboardDecideur';
 
 function App() {
   
@@ -31,29 +31,34 @@ function App() {
   //   return <Login setToken={setToken} />
   // }
    
-  const [connected, setConnected] = useState( false);
   //setConnected(localStorage.getItem("connected")
   const [sidebarOpen, setSidebarOpen] = useState(false);
+  const connected = JSON.parse(localStorage.getItem('connected'));
+  console.log(connected)
+  const TypeUser = localStorage.getItem('typeUser');
+  console.log(TypeUser);
     return (
       <div className="wrapper">
       
       <BrowserRouter>
       <div className="flex h-screen overflow-hidden">
-     {/* Sidebar */}
- 
-     {/* Content area */}
      <div className="relative flex flex-col flex-1 overflow-y-auto overflow-x-hidden">
    
      <main>
     
      <Routes>
         
-          
+     { connected && 
+          <Route path="" element={<Navigate to="/dashboard_atc" />} />
+      }
+      {/* -------------------------------------------- */}
+      {/* login route */}
            <Route path="" element={<Navigate to="/login" />} />
-           
          <Route exact path="/login" element={ <ThemeProvider theme={theme}>
             <Login/> </ThemeProvider>} />
-         <Route exact path="/dashboard"  element={  <ThemeProvider theme={theme}>
+      {/* -------------------------------------------- */}
+      {/* ATC routes */}
+         <Route exact path="/dashboard_atc"  element={  <ThemeProvider theme={theme}>
             <Dashboard/> </ThemeProvider>} />
          <Route exact path="/locataires" element={  <ThemeProvider theme={theme}>
             <Locataires/> </ThemeProvider>}/>
@@ -83,6 +88,10 @@ function App() {
            <RealTimeTracking/> </ThemeProvider>} />
            <Route exact path="/demandes_support" element={  <ThemeProvider theme={theme}>
            <DemandesSupport/> </ThemeProvider>} />
+{/* -------------------------------------------- */}
+{/* Decideur routes */}
+        <Route exact path="/dashboard_decideur"  element={  <ThemeProvider theme={theme}>
+          <DashboardDecideur/> </ThemeProvider>} />
          </Routes>
      </main>
  
