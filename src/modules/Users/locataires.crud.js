@@ -215,3 +215,55 @@ export async function getNbRefusedPerWeek(){
         console.error(err);
     }
 }
+export async function getNbInscriptionPerMonth(){
+
+    const nb = [0,0,0,0,0,0,0,0,0,0,0,0]
+    try {
+       let res = await axios({
+            url: Services.LOCATAIRE_URL,
+            method: 'get',
+            timeout: 8000,
+            headers: {
+                'Content-Type': 'application/json',
+            }
+        })  
+        // Don't forget to return something   
+        const array = res.data;
+                for (let i = 0; i < array.length; i++) {
+                        const month = parseInt(fDateMonth(array[i].createdAt));
+                        nb[month-1]++;
+                }
+        console.log(nb);
+        return nb;
+    }
+    catch (err) {
+        console.error(err);
+    }
+}
+export async function getNbInscriptionPerWeek(){
+    var nb = new Array(52);
+    for (let i = 0; i < nb.length; i++) {
+        nb[i] = 0;
+     }
+    try {
+       let res = await axios({
+            url: Services.LOCATAIRE_URL,
+            method: 'get',
+            timeout: 8000,
+            headers: {
+                'Content-Type': 'application/json',
+            }
+        })  
+        // Don't forget to return something   
+        const array = res.data;
+                for (let i = 0; i < array.length; i++) {
+                        const week = parseInt(fDateWeek(array[i].updatedAt))
+                        nb[week-1]++;
+                }
+        console.log(nb);
+        return nb;
+    }
+    catch (err) {
+        console.error(err);
+    }
+}

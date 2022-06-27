@@ -14,7 +14,10 @@ import { getNbAccepted,
   getNbAcceptedPerMonth,
   getNbRefusedPerMonth,
   getNbAcceptedPerWeek,
-  getNbRefusedPerWeek } from '../../../modules/Users/locataires.crud';
+  getNbRefusedPerWeek,
+  getNbInscriptionPerWeek,
+  getNbInscriptionPerMonth
+ } from '../../../modules/Users/locataires.crud';
 import TotalDemandes from '../../../components/Charts/Demandes/TotalDemandes';
 //charts
 import TotalDemandesPerMonth from '../../../components/Charts/Demandes/TotalDemandesPerMonth';
@@ -30,6 +33,9 @@ const DashboardDecideur = () => {
     const [nbRefusedPerMonth,setNbRefusedPerMonth] = useState();
     const [nbAcceptedPerWeek,setNbAcceptedPerWeek] = useState();
     const [nbRefusedPerWeek,setNbRefusedPerWeek] = useState();
+    const [nbInscriptionPerMonth,setNbInscriptionPerMonth] = useState();
+    const [nbInscriptionPerWeek,setNbInscriptionPerWeek] = useState();
+
     const semaine = new Array(52);
     for (let i = 0; i < semaine.length; i++) {
       semaine[i]= (i+1).toString();
@@ -62,6 +68,11 @@ const DashboardDecideur = () => {
        const r7 = await getNbRefusedPerWeek();
        setNbRefusedPerWeek(r7);
        console.log(r7);
+       const r8 = await getNbInscriptionPerMonth();
+       setNbInscriptionPerMonth(r8)
+       const r9 = await getNbInscriptionPerWeek();
+       setNbInscriptionPerWeek(r9)
+
 
 
       }
@@ -141,7 +152,7 @@ const DashboardDecideur = () => {
           {/* Statistics per semaines */}
           <Grid item xs={12} md={6} lg={12}>
           <TotalDemandesPerMonth
-              title="Nombre de pannes par semaine"
+              title="Nombre de demandes refusées par mois"
               subheader="Année 2022"
               chartLabels={semaine}
               chartData={[
@@ -160,8 +171,55 @@ const DashboardDecideur = () => {
                 
               ]}
             />
-        
-
+          </Grid>
+          {/* statistiques sur le nombre d'inscription par mois  */}
+          <Grid item xs={12} md={6} lg={12}>
+            <TotalDemandesPerMonth
+              title="Nombre d'inscriptions par mois"
+              subheader="Année 2022"
+              chartLabels={[
+                '01/01/2022',
+                '02/01/2022',
+                '03/01/2022',
+                '04/01/2022',
+                '05/01/2022',
+                '06/01/2022',
+                '07/01/2022',
+                '08/01/2022',
+                '09/01/2022',
+                '10/01/2022',
+                '11/01/2022',
+                '12/01/2022'
+              ]}
+              chartData={[
+               
+                {
+                  name: "Nombre d'inscriptitions",
+                  type: 'line',
+                  fill: 'solid',
+                  data: nbInscriptionPerMonth,
+                },
+                
+              ]}
+            />
+          </Grid>
+          {/* statistiques sur le nombre d'inscription par semaine */}
+          <Grid item xs={12} md={6} lg={12}>
+          <TotalDemandesPerMonth
+              title="Nombre d'inscriptions par semaine"
+              subheader="Année 2022"
+              chartLabels={semaine}
+              chartData={[
+                {
+                  name: "Nombre d'inscriptitions",
+                  type: 'line',
+                  fill: 'solid',
+                  data: nbInscriptionPerWeek,
+                },
+               
+                
+              ]}
+            />
           </Grid>
           </Grid>
     </Box>
