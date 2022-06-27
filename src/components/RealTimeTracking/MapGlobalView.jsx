@@ -63,6 +63,9 @@
  import { BiCar } from "react-icons/bi"
  export default function MapComponent({vehicules}) {
   const socket = socketIOClient(Services.WEB_SOCKET_URL);
+  //show info 
+ 
+ 
    const center = {
      lat: 36.7216959,
       lng: 3.1254200 
@@ -79,30 +82,7 @@
     });
   //Websocket
   const [ws, setWebsocket] = useState(null)
- // const getupdate =()=>{
- //const url = Services.WEB_SOCKET_URL;
- // setWebsocket(()=>{
- //   const ws = new WebSocket(url);
- //   ws.emit("subscribe", carsId);
- //   ws.on("position_update", data => {
- //     //console.log(data)
- //     setCars(cars.set(data.idVehicule,data));
- //     //console.log(data)
- //    //console.log(position);
- //   }
- // },
- // }
-   //console.log(carsId);   
-   // const getUpdate = ()=>{
-   //   const socket = socketIOClient(Services.WEB_SOCKET_URL);
-   //   socket.emit("subscribe", carsId);
-   //   socket.on("position_update", data => {
-   //     //console.log(data)
-   //     setCars(cars.set(data.idVehicule,data));
-   //     //console.log(data)
-   //    //console.log(position);
-   //   });
-   // }  
+  
     useEffect(() => {
       console.log(carsId);
       socket.emit("subscribe", [20,11,12]);
@@ -133,12 +113,19 @@
  //   fillOpacity: 1,
  //   scale: 0.03, //to reduce the size of icons
  //  };
+ const [activeMarker, setActiveMarker] = useState(null);
+ const handleActiveMarker = (marker) => {
+  if (marker === activeMarker) {
+    return;
+  }
+  setActiveMarker(marker);
+};
    return (
      <LoadScript  googleMapsApiKey={APIKeys.GoogleMaps} language="french" region="Algiers">
        <GoogleMap
          mapContainerStyle={containerStyle}
         center={center}
-         zoom={5}
+         zoom={10}
        >
          {
          }
@@ -154,9 +141,28 @@
              }
            }   icon={iconPin}
             zIndex={10} 
+            key={k}
             //{showDetails(cars.get(k).idVehicule)}
+            //onClick={console.log("hhhhhh")} 
              //onClick={showDetails(cars.get(k).idVehicule)}
-             />
+             onClick={() => handleActiveMarker(k)}
+             >
+              {activeMarker === k ? (
+            <InfoWindow onCloseClick={() => setActiveMarker(null)}>
+              <div>
+              <div>id Vehicule : {cars.get(k).idVehicule}</div>
+              <div>Niveau de charge :{cars.get(k).infoVehicule.niveauCharge} %</div>
+              <div>Etat : {cars.get(k).infoVehicule.etat}</div>
+              <div>Température : {cars.get(k).infoVehicule.temperature}</div>
+              <div>Verrouille : {cars.get(k).infoVehicule.verrouille === true ? <span>Oui</span> :<span>Non</span> }
+              </div>
+
+              </div>
+            
+
+            </InfoWindow>
+          ) : null}
+              </Marker>
            ))
          }
  {/* <Marker position= {center} icon={iconPin} zIndex={10} clickable={true} /> */}
