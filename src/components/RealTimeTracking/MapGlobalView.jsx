@@ -67,8 +67,8 @@
  
  
    const center = {
-     lat: 36.7216959,
-      lng: 3.1254200 
+     lat: 36.704459,
+      lng: 3.172285 
    }; 
    const carsId = [];
    const [cars, setCars] = useState(new Map())
@@ -85,11 +85,12 @@
   
     useEffect(() => {
       console.log(carsId);
-      socket.emit("subscribe", [20,11,12]);
+      socket.emit("subscribe", [20,11,12,100]);
+      console.log('test')
       socket.on("position_update", data => {
         //console.log(data)
         setCars(cars.set(data.idVehicule,data));
-        //console.log(data)
+        console.log(data+'test')
        //console.log(position);
       });
       //socket.disconnect();

@@ -72,9 +72,12 @@ useEffect(() => {
 }, [])
     const handleClickShowActiveReservationDetails = (id) =>{
       setShowActiveReservationDetails(false);
+      console.log('avant',id);
+      setIdReservation(id);
+      console.log('apres',id);
       setShowActiveReservationDetails(true);
       setWidth(10);
-      setIdReservation(id);
+      //setIdReservation(id);
     }
      
     
@@ -104,6 +107,7 @@ useEffect(() => {
     >
       <Grid container spacing={0}>
       <Grid item xs={6} md={12} sx={{m:2}}>
+        {console.log('yes',idReservation)}
       {showActiveReservationDetails && <MapDetails id={idReservation} />}
       </Grid>
       <Grid item xs={6} md={12} >

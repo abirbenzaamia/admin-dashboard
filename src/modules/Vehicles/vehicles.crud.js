@@ -18,13 +18,13 @@ export async function getVehiculesParAm(id){
             headers: {
                 'Content-Type': 'application/json',
             }
-        })   
-        // Don't forget to return something   
+        })
+        // Don't forget to return something
         const array = res.data;
                 for (let i = 0; i < array.length; i++) {
                  if (array[i].am.amId===id) {
                     cars.push(array[i]);
-                 }      
+                 }
                 }
         //console.log(pannes);
         return cars;
@@ -42,9 +42,8 @@ export async function getIdAssociatedAM(id){
             headers: {
                 'Content-Type': 'application/json',
             }
-        })   
-        // Don't forget to return something   
-        //console.log(id,'mouad+abeer=esi')
+        })
+        // Don't forget to return something
         return res.data.am.amId;      
     }
     catch (err) {

@@ -32,11 +32,25 @@ function MapDetails({id}) {
       lng:response.data.longitudeArrivee,
       lat:response.data.latitudeArrivee
     })
-    console.log(arrivee)
+    console.log(arrivee);
+    console.log(depart);
       setReservation(response.data);
     }
-   getReservationDetails()
-   .catch(console.error);
+    getReservationDetails().catch(console.error);
+    async function calculateRoute (){
+      if (depart ==='' || arrivee === '') return;
+      const directionService = new google.maps.DirectionsService();
+      const result = await directionService.route({
+        origin : depart,
+        destination : arrivee,
+        travelMode : google.maps.TravelMode.DRIVING
+      })
+      setDirectionResponse(result)
+      setDistance(result.routes[0].legs[0].distance.text)
+      setDuration(result.routes[0].legs[0].duration.text)
+      }
+   
+   
    calculateRoute().catch(console.error);
 }, [id])
 
@@ -44,43 +58,10 @@ const [directionResponse, setDirectionResponse] = useState(null);
 const [distance, setDistance] = useState('');
 const [duration, setDuration] = useState('');
 
-async function calculateRoute (){
-if (depart ==='' || arrivee === '') return;
-const directionService = new google.maps.DirectionsService();
-const result = await directionService.route({
-  origin : depart,
-  destination : arrivee,
-  travelMode : google.maps.TravelMode.DRIVING
-})
-setDirectionResponse(result)
-setDistance(result.routes[0].legs[0].distance.text)
-setDuration(result.routes[0].legs[0].duration.text)
-}
+
   const [current, setCurrent] = useState(depart);
   
-  
-  // const pathCoordinates = [
-  //  depart,
-  //  current
-  // ];  
 
- // const [response, setResponse] = useState("");
-            
-  // useEffect(() => {
-  //   const socket = socketIOClient(ENDPOINT);
-  //   socket.emit("position_update")
-  //   socket.on("position_update", data => {
-  //     setResponse(data);
-  //     const cordination = {
-  //        lat: parseFloat(response.latitude),
-  //        lng: parseFloat(response.longitude)
-  //      };
-  //     setCurrent(cordination);
-  //     console.log(cordination);  
-  //   });
-  // }, [response.latitude, response.longitude]);
-  
-  
   
  
 const containerStyle = {

@@ -19,7 +19,7 @@ const VehiclesTracking = () => {
     getListVehicules()
     .catch(console.error);
   })
-  //shopw details 
+  //show details 
   const [showVehicleDetails, setShowVehicleDetails] = useState(false);
   const [width,setWidth] = useState(15);
   const [idVehicule,setIdVehicule] = useState();
