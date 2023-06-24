@@ -152,7 +152,7 @@ const DashboardDecideur = () => {
           {/* Statistics per semaines */}
           <Grid item xs={12} md={6} lg={12}>
           <TotalDemandesPerMonth
-              title="Nombre de demandes refusées par mois"
+              title="Nombre de demandes refusées par semaine"
               subheader="Année 2022"
               chartLabels={semaine}
               chartData={[
